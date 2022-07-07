@@ -1,4 +1,5 @@
 from crypt import methods
+import queue
 from flask import Flask, render_template, request, url_for, redirect, session
 import pymongo
 import bcrypt
@@ -8,6 +9,9 @@ app.secret_key = "testing"
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 db = client.get_database('total_records')
 records = db.register
+executed_jobs = db.executed     # only contains job id's, start time, end time, interval
+queue_jobs = db.queue           # contains job id, start time, end time, interval
+commands = db.commands          # contains job id, cmd id, f, n, p, chipd id, group id
 
 @app.route('/sign_out')
 def sign_out(user=""):
@@ -159,15 +163,67 @@ def bluetooth_devices():
         print(user)
     return render_template('bluetooth-devices.html', user=user)
 
-@app.route('/scheduled_jobs')
+@app.route('/scheduled_jobs', methods=['post','get'])
 def scheduled_jobs():
+    message = ''
     print(session)
+    print("Clicked on the submit button"+str(request))
     if "email" in session and session["email"]!="":
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    return render_template('scheduled-jobs.html', user=user)
+    
+    # update the db and call the same template
+    if request.method == "POST":
+        chip_id = request.form.get("chipid")
+        group_id = request.form.get("groupid")
+        cmd_id = request.form.get("cmdid")
+        frequency = request.form.get("frequency")
+        width = request.form.get("width")
+        number = request.form.get("number")
+        time_now = request.form.get("timenow")
+        start_time = request.form.get("starttime")
+        end_time = request.form.get("endtime")
+        interval = request.form.get("interval")
 
+        print("start_time: "+start_time)
+        print("end_time: "+end_time)
+        print("time_now: "+time_now)
+        print("interval: "+interval)
+        print("chip_id: "+chip_id)
+
+        # if job is to be run now update the executed jobs
+        time_to_execute = start_time
+        job_input = {'cmd_id': cmd_id, 'execution_time':time_to_execute}
+        cmd_input = {'cmd_id':cmd_id, 'chip_id':chip_id, 'group_id':group_id, 'frequency' :frequency, 'width':width, number:'number'}
+        print("Inserting into job db: "+str(job_input))
+        print("Inserting into cmd db: "+str(cmd_input))
+        db.commands.insert_one(cmd_input)
+        if interval is "":
+            db.executed.insert_one(job_input)
+
+        # else add to the job queue 
+        else:
+            db.queue .insert_one(job_input)
+
+    jobs = db.executed.aggregate([
+                { "$sort": {"time_to_execute": 1}},
+                { "$limit": 100} 
+                ])
+    executedjobs = jobs
+    print("\nExecuted Jobs are: \n")
+    for elem in executedjobs:
+        print(elem)
+    jobs = db.queue .aggregate([
+            { "$sort": {"time_to_execute": 1}},
+            { "$limit": 1} 
+        ])
+    jobsqueue = jobs
+    print("\n Queue Jobs are: \n")
+    for elem in jobsqueue:
+        print(elem)
+    return render_template('scheduled-jobs.html', user=user, executed=executedjobs, queuejobs=jobsqueue)
+    
 @app.route('/logs')
 def logs():
     print(session)

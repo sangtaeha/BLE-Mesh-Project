@@ -328,32 +328,32 @@
               <p></p>
 
               <!-- Browser Default Validation -->
-              <form class="row g-3">
+              <form method="post" class="row g-3" novalidate>
                 <div class="col-md-4">
                   <label for="validationDefault01" class="form-label">Chip ID</label>
-                  <input type="text" class="form-control" id="validationDefault01" placeholder="****" required>
+                  <input type="text" name="chipid" class="form-control" id="validationDefault01" placeholder="****" required>
                 </div>
                 <div class="col-md-4">
                   <label for="validationDefault02" class="form-label">Group ID</label>
-                  <input type="text" class="form-control" id="validationDefault02" placeholder="****" required>
+                  <input type="text" name="groupid" class="form-control" id="validationDefault02" placeholder="****" required>
                 </div>
                 <div class="col-md-4">
                   <label for="validationDefaultUsername" class="form-label">Command ID</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" placeholder="****" required>
+                    <input type="text" name="cmdid" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2" placeholder="****" required>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <label for="validationDefault03" class="form-label">Frequency (F)</label>
-                  <input type="text" class="form-control" id="validationDefault03" required>
+                  <input type="text" name="frequency" class="form-control" id="validationDefault03" required>
                 </div>
                 <div class="col-md-4">
                   <label for="validationDefault04" class="form-label">Pulse Width (W)</label>
-                  <input type="text" class="form-control" id="validationDefault03" required>
+                  <input type="text" name="width" class="form-control" id="validationDefault03" required>
                 </div>
                 <div class="col-md-4">
                   <label for="validationDefault05" class="form-label">Number of Pulses (P)</label>
-                  <input type="text" class="form-control" id="validationDefault05" required>
+                  <input type="text" name="number" class="form-control" id="validationDefault05" required>
                 </div>
                 <div class="col-12">
                   <!-- Default Tabs -->
@@ -372,35 +372,35 @@
                     <div class="tab-pane fade show active" id="ScheduleOnce" role="tabpanel" aria-labelledby="home-tab">
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">Time</label>
-                        <input type="datetime-local" class="form-control time" id="TimeNow" required>
+                        <input type="datetime-local" name="timenow" class="form-control time" id="TimeNow" required>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="ScheduleDaily" role="tabpanel" aria-labelledby="profile-tab">
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">Start Time</label>
-                        <input type="datetime-local" class="form-control time" id="DailyStartTime" required>
+                        <input type="datetime-local" name="starttime" class="form-control time" id="DailyStartTime" required>
                       </div>
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">End Time</label>
-                        <input type="datetime-local" class="form-control time" id="DailyEndTime" required>
+                        <input type="datetime-local" name="endtime" class="form-control time" id="DailyEndTime" required>
                       </div>
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">Interval</label>
-                        <input type="text" class="form-control" id="validationDefault03" placeholder="10" required>
+                        <input type="text" name="interval" class="form-control" id="validationDefault03" placeholder="10" required>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="AdvScehduling" role="tabpanel" aria-labelledby="contact-tab">
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">Start Time</label>
-                        <input type="datetime-local" class="form-control" id="timenow" required>
+                        <input type="datetime-local" name="starttime" class="form-control" id="timenow" required>
                       </div>
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">End Time</label>
-                        <input type="datetime-local" class="form-control" id="timenow" required>
+                        <input type="datetime-local" name="endtime" class="form-control" id="timenow" required>
                       </div>
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">Interval</label>
-                        <input type="text" class="form-control" id="validationDefault03" required>
+                        <input type="text" name="interval" class="form-control" id="validationDefault03" required>
                       </div>
                     </div>
                   </div><!-- End Default Tabs -->
@@ -421,7 +421,7 @@
           <!-- Recent Activity -->
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Recent Activity </h5>
+              <h5 class="card-title"> Jobs in Queue </h5>
               <div class="activity">
                 
                 <div class="activity-item d-flex">
@@ -478,7 +478,7 @@
           </div>
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Recent Activity </h5>
+              <h5 class="card-title"> Executed Jobs </h5>
               <div class="activity">
                 
                 <div class="activity-item d-flex">
