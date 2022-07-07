@@ -423,54 +423,17 @@
             <div class="card-body">
               <h5 class="card-title"> Jobs in Queue </h5>
               <div class="activity">
-                
+                {% for job in queuejobs %}
+
                 <div class="activity-item d-flex">
-                  <div class="activite-label">32 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  <div class="activite-label">{{job["time"]}}</div>
+                  <i class='{{ job["font"] }}'></i>
                   <div class="activity-content">
-                    Added a <a href="#" class="fw-bold text-dark">friend node ID: 123</a> for <a href="#" class="fw-bold text-dark"> BLE Chipset #121</a>
+                    Command for <a href="#" class="fw-bold text-dark">Chip: {{job["chipId"]}}</a> and <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a> with <a href="#" class="fw-bold text-dark">frequency: {{job["frequency"]}}</a>, <a href="#" class="fw-bold text-dark"> width: {{job["width"]}} </a>
                   </div>
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">56 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                  <div class="activity-content">
-                    Added <a href="#" class="fw-bold text-dark"> BLE Chipset ID #123 </a>
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 hrs</div>
-                  <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                  <div class="activity-content">
-                    Sent the scheduled job ID: 1132
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">1 day</div>
-                  <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                  <div class="activity-content">
-                    Sent the scheduled job ID: 1211
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 days</div>
-                  <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                  <div class="activity-content">
-                    Added relay node ID: 1111
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">4 weeks</div>
-                  <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                  <div class="activity-content">
-                    Added relay node ID: 1110
-                  </div>
-                </div><!-- End activity item-->
+                {% endfor %}
 
               </div>
 
@@ -480,54 +443,17 @@
             <div class="card-body">
               <h5 class="card-title"> Executed Jobs </h5>
               <div class="activity">
-                
+                {% for job in executed %}
+
                 <div class="activity-item d-flex">
-                  <div class="activite-label">32 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+                  <div class="activite-label">{{job["time"]}}</div>
+                  <i class='{{ job["font"] }}'></i>
                   <div class="activity-content">
-                    Added a <a href="#" class="fw-bold text-dark">friend node ID: 123</a> for <a href="#" class="fw-bold text-dark"> BLE Chipset #121</a>
+                    Command for <a href="#" class="fw-bold text-dark">Chip: {{job["chipId"]}}</a> and <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a> with <a href="#" class="fw-bold text-dark">frequency: {{job["frequency"]}}</a>, <a href="#" class="fw-bold text-dark"> width: {{job["width"]}} </a>
                   </div>
                 </div><!-- End activity item-->
 
-                <div class="activity-item d-flex">
-                  <div class="activite-label">56 min</div>
-                  <i class='bi bi-circle-fill activity-badge text-danger align-self-start'></i>
-                  <div class="activity-content">
-                    Added <a href="#" class="fw-bold text-dark"> BLE Chipset ID #123 </a>
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 hrs</div>
-                  <i class='bi bi-circle-fill activity-badge text-primary align-self-start'></i>
-                  <div class="activity-content">
-                    Sent the scheduled job ID: 1132
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">1 day</div>
-                  <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
-                  <div class="activity-content">
-                    Sent the scheduled job ID: 1211
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">2 days</div>
-                  <i class='bi bi-circle-fill activity-badge text-warning align-self-start'></i>
-                  <div class="activity-content">
-                    Added relay node ID: 1111
-                  </div>
-                </div><!-- End activity item-->
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">4 weeks</div>
-                  <i class='bi bi-circle-fill activity-badge text-muted align-self-start'></i>
-                  <div class="activity-content">
-                    Added relay node ID: 1110
-                  </div>
-                </div><!-- End activity item-->
+                {% endfor %}
 
               </div>
 
@@ -569,7 +495,7 @@
   <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
   <script>
     function clockTick()    {
-      var date = new Date().toString("yyyy-MM-ddThh:mm");
+      var date = new Date().toString("yyyy-MM-ddTH:mm");
       console.log(date);
       const elems = document.getElementsByClassName("time");
       for(var elem of elems){

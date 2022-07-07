@@ -3,6 +3,7 @@ import queue
 from flask import Flask, render_template, request, url_for, redirect, session
 import pymongo
 import bcrypt
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "testing"
@@ -12,6 +13,38 @@ records = db.register
 executed_jobs = db.executed     # only contains job id's, start time, end time, interval
 queue_jobs = db.queue           # contains job id, start time, end time, interval
 commands = db.commands          # contains job id, cmd id, f, n, p, chipd id, group id
+
+
+# for formatting time delta
+fmt = '%Y-%m-%dT%H:%M'
+def delta_to_string(duration):
+    days, seconds = duration.days, duration.seconds
+    weeks = max(days // 7, 0)
+    months = max(weeks // 4, 0)
+    years = max(months // 12, 0)
+    days = max(days%7, 0)
+    hours = max(seconds//3600, 0)
+    minutes = max((seconds %3600)//60, 0)
+    seconds = max((seconds % 60), 0)
+    
+    print("{} years, {} months, {} days, {} weeks, {} hours, {} seconds, {} minutes".format(years, months, days, weeks, hours, seconds, minutes))
+
+    if years>0:
+        return "{} years".format(years), "bi bi-circle-fill activity-badge text-danger align-self-start"
+    elif months>0:
+        return "{} months".format(months), "bi bi-circle-fill activity-badge text-warning align-self-start"
+    elif weeks>0:
+        return "{} weeks".format(weeks), "bi bi-circle-fill activity-badge text-primary align-self-start"
+    elif days>0:
+        return "{} days".format(days), "bi bi-circle-fill activity-badge text-info align-self-start"
+    elif hours>0:
+        return "{} hours".format(hours), "bi bi-circle-fill activity-badge text-success align-self-start"
+    elif minutes>0:
+        return "{} minutes".format(minutes), "bi bi-circle-fill activity-badge text-muted align-self-start"
+    elif seconds>0:
+        return "{} seconds".format(seconds), "bi bi-circle-fill activity-badge text-danger align-self-start"
+    else:
+        return ""
 
 @app.route('/sign_out')
 def sign_out(user=""):
@@ -195,7 +228,7 @@ def scheduled_jobs():
         # if job is to be run now update the executed jobs
         time_to_execute = start_time
         job_input = {'cmd_id': cmd_id, 'execution_time':time_to_execute}
-        cmd_input = {'cmd_id':cmd_id, 'chip_id':chip_id, 'group_id':group_id, 'frequency' :frequency, 'width':width, number:'number'}
+        cmd_input = {'cmd_id':cmd_id, 'chip_id':chip_id, 'group_id':group_id, 'frequency' :frequency, 'width':width, 'number':number}
         print("Inserting into job db: "+str(job_input))
         print("Inserting into cmd db: "+str(cmd_input))
         db.commands.insert_one(cmd_input)
@@ -204,25 +237,56 @@ def scheduled_jobs():
 
         # else add to the job queue 
         else:
-            db.queue .insert_one(job_input)
+            db.queue.insert_one(job_input)
 
+    # filling jobs done so far section
     jobs = db.executed.aggregate([
-                { "$sort": {"time_to_execute": 1}},
-                { "$limit": 100} 
+                { "$sort": {"execution_time": -1}},
+                { "$limit": 6} 
                 ])
     executedjobs = jobs
+    user_execute = []
     print("\nExecuted Jobs are: \n")
-    for elem in executedjobs:
-        print(elem)
+    i=0
+    for job in executedjobs:
+        print(job)
+        fmt = '%Y-%m-%dT%H:%M'
+        job_exec = {}
+        timedelta = delta_to_string(datetime.now() - datetime.strptime(job["execution_time"], fmt))
+        print(timedelta)
+        job_exec["time"], job_exec["font"] = timedelta
+        cmds_search = db.commands.find({"cmd_id":job["cmd_id"]})
+        job_exec["chipId"] = cmds_search[0]["chip_id"]
+        job_exec["group_id"] = cmds_search[0]["group_id"]
+        job_exec["frequency"] = cmds_search[0]["frequency"]
+        job_exec["width"] = cmds_search[0]["width"]
+        #job_exec["number"] = cmds_search[0]["number"]
+        user_execute.append(job_exec)
+        i+=1
+    
+    # filling jobs in queue section
     jobs = db.queue .aggregate([
-            { "$sort": {"time_to_execute": 1}},
-            { "$limit": 1} 
+            { "$sort": {"execution_time": -1}},
+            { "$limit": 6} 
         ])
     jobsqueue = jobs
     print("\n Queue Jobs are: \n")
-    for elem in jobsqueue:
-        print(elem)
-    return render_template('scheduled-jobs.html', user=user, executed=executedjobs, queuejobs=jobsqueue)
+    i=0
+    user_queue=[]
+    for job in jobsqueue:
+        print(job)
+        job_exec = {}
+        job_exec["time"],job_exec["font"] = delta_to_string(datetime.strptime(job["execution_time"], fmt) - datetime.now())
+        cmds_search = db.commands.find({"cmd_id":job["cmd_id"]})
+        job_exec["chipId"] = cmds_search[0]["chip_id"]
+        job_exec["group_id"] = cmds_search[0]["group_id"]
+        job_exec["frequency"] = cmds_search[0]["frequency"]
+        job_exec["width"] = cmds_search[0]["width"]
+        #job_exec["number"] = cmds_search[0]["number"]
+        user_queue.append(job_exec)
+        i+=1
+
+    return render_template('scheduled-jobs.html', user=user, executed=user_execute, queuejobs=user_queue)
     
 @app.route('/logs')
 def logs():
