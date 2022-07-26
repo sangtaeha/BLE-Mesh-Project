@@ -10,9 +10,9 @@ app.secret_key = "testing"
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 db = client.get_database('total_records')
 records = db.register
-executed_jobs = db.executed     # only contains job id's, start time, end time, interval
-queue_jobs = db.queue           # contains job id, start time, end time, interval
-commands = db.commands          # contains job id, cmd id, f, n, p, chipd id, group id
+#executed_jobs = db.executed     # only contains job id's, start time, end time, interval
+#queue_jobs = db.queue           # contains job id, start time, end time, interval
+#commands = db.commands          # contains job id, cmd id, f, n, p, chipd id, group id
 
 
 # for formatting time delta
@@ -38,11 +38,11 @@ def delta_to_string(duration):
     elif days>0:
         return "{} days".format(days), "bi bi-circle-fill activity-badge text-info align-self-start"
     elif hours>0:
-        return "{} hours".format(hours), "bi bi-circle-fill activity-badge text-success align-self-start"
+        return "{} hrs".format(hours), "bi bi-circle-fill activity-badge text-success align-self-start"
     elif minutes>0:
-        return "{} minutes".format(minutes), "bi bi-circle-fill activity-badge text-muted align-self-start"
+        return "{} mins".format(minutes), "bi bi-circle-fill activity-badge text-muted align-self-start"
     elif seconds>0:
-        return "{} seconds".format(seconds), "bi bi-circle-fill activity-badge text-danger align-self-start"
+        return "{} secs".format(seconds), "bi bi-circle-fill activity-badge text-danger align-self-start"
     else:
         return ""
 
@@ -226,23 +226,24 @@ def scheduled_jobs():
         print("chip_id: "+chip_id)
 
         # if job is to be run now update the executed jobs
-        time_to_execute = start_time
+        time_to_execute = time_now
         job_input = {'cmd_id': cmd_id, 'execution_time':time_to_execute}
         cmd_input = {'cmd_id':cmd_id, 'chip_id':chip_id, 'group_id':group_id, 'frequency' :frequency, 'width':width, 'number':number}
         print("Inserting into job db: "+str(job_input))
         print("Inserting into cmd db: "+str(cmd_input))
         db.commands.insert_one(cmd_input)
-        if interval is "":
-            db.executed.insert_one(job_input)
-
+        print("Current time: {0} and timenwo is: {1}".format(datetime.now().strftime(fmt), time_now))
+        if (time_now > (datetime.now().strftime(fmt))):
+            db.queue_jobs.insert_one(job_input)
         # else add to the job queue 
         else:
-            db.queue.insert_one(job_input)
+            db.executed.insert_one(job_input)
+            
 
     # filling jobs done so far section
     jobs = db.executed.aggregate([
                 { "$sort": {"execution_time": -1}},
-                { "$limit": 6} 
+                { "$limit": 7} 
                 ])
     executedjobs = jobs
     user_execute = []
@@ -250,7 +251,6 @@ def scheduled_jobs():
     i=0
     for job in executedjobs:
         print(job)
-        fmt = '%Y-%m-%dT%H:%M'
         job_exec = {}
         timedelta = delta_to_string(datetime.now() - datetime.strptime(job["execution_time"], fmt))
         print(timedelta)
@@ -265,9 +265,9 @@ def scheduled_jobs():
         i+=1
     
     # filling jobs in queue section
-    jobs = db.queue .aggregate([
+    jobs = db.queue_jobs.aggregate([
             { "$sort": {"execution_time": -1}},
-            { "$limit": 6} 
+            { "$limit": 7} 
         ])
     jobsqueue = jobs
     print("\n Queue Jobs are: \n")
