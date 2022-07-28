@@ -311,8 +311,8 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{url_for('home_page')}}">Home</a></li>
-          <li class="breadcrumb-item">Jobs</li>
-          <li class="breadcrumb-item active">Schedule Jobs</li>
+          <li class="breadcrumb-item">Command</li>
+          <li class="breadcrumb-item active">{{commands["_id"]}}</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -324,18 +324,22 @@
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Schedule a Job</h5>
+              <h5 class="card-title">Command</h5>
               <p></p>
 
               <!-- Browser Default Validation -->
               <form method="post" class="row g-3" novalidate>
                 <div class="col-md-4">
                   <label for="validationDefault01" class="form-label">Chip ID</label>
-                  <input type="text" name="chipid" class="form-control" id="validationDefault01" placeholder="****" required>
+                  <input type="text" name="chipid" class="form-control" id="validationDefault01" placeholder='{{commands["chip_id"]}}' required>
                 </div>
                 <div class="col-md-4">
                   <label for="validationDefault02" class="form-label">Group ID</label>
-                  <input type="text" name="groupid" class="form-control" id="validationDefault02" placeholder="****" required>
+                  <input type="text" name="groupid" class="form-control" id="validationDefault02" placeholder='{{commands["group_id"]}}' required>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationDefault02" class="form-label">CMD Val</label>
+                  <input type="text" name="cmd_val" class="form-control" id="validationDefault02" placeholder='{{commands["cmd_val"]}}' required>
                 </div>
                 <div class="col-12">
                   <!-- Default Tabs -->
@@ -354,7 +358,7 @@
                     <div class="tab-pane fade show active" id="ScheduleOnce" role="tabpanel" aria-labelledby="home-tab">
                       <div class="col-md-4">
                         <label for="validationDefault03" class="form-label">Time</label>
-                        <input type="datetime-local" name="timenow" class="form-control time" id="TimeNow" required>
+                        <input type="datetime-local" name="timenow" class="form-control time" value='{{jobs["execution_time"]}}' id="TimeNow" required>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="ScheduleDaily" role="tabpanel" aria-labelledby="profile-tab">
@@ -388,8 +392,7 @@
                   </div><!-- End Default Tabs -->
                 </div>
                 <div class="col-12">
-                  <button class="btn btn-success rounded-pill" name="todocmd" value="on" type="submit" >Turn ON</button>
-                  <button class="btn btn-danger rounded-pill" name="todocmd" value="off" type="submit" >Turn OFF</button>
+                  <button class="btn btn-primary rounded-pill" name="todocmd" value='{{commands["_id"]}}' type="submit" >Submit</button>
                 </div>
               </form>
               <!-- End Browser Default Validation -->
@@ -397,67 +400,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Right side columns -->
-        
-        <div class="col-lg-6">          
-          <!-- Recent Activity -->
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"> Jobs in Queue </h5>
-              <div class="activity">
-                {% for job in queuejobs %}
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">{{job["time"]}}</div>
-                  <i class='{{ job["font"] }}'></i>
-                  <div class="activity-content">
-                    
-                    Turn
-                    {% if "1" in job["cmd_val"] %}
-                    <span class="badge rounded-pill bg-success">ON</span>
-                    {% else %}
-                    <span class="badge rounded-pill bg-danger">OFF</span>
-                    {% endif %}
-                    for chips with <a href="#" class="fw-bold text-dark">Chip: {{job["chipId"]}}</a> and <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
-                  </div>
-                </div><!-- End activity item-->
-
-                {% endfor %}
-
-              </div>
-
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title"> Executed Jobs </h5>
-              <div class="activity">
-                {% for job in executed %}
-
-                <div class="activity-item d-flex">
-                  <div class="activite-label">{{job["time"]}}</div>
-                  <i class='{{ job["font"] }}'></i>
-                  <div class="activity-content">
-                    
-                    Turn
-                    {% if "1" in job["cmd_val"] %}
-                    <span class="badge rounded-pill bg-success">ON</span>
-                    {% else %}
-                    <span class="badge rounded-pill bg-danger">OFF</span>
-                    {% endif %}
-                    for chips with <a href="#" class="fw-bold text-dark">Chip: {{job["chipId"]}}</a> and <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
-                  </div>
-                </div><!-- End activity item-->
-
-                {% endfor %}
-
-              </div>
-
-            </div>
-            </div>
-            
-          <!-- End Recent Activity -->
           
 
         </div><!-- End Right side columns -->
@@ -490,19 +432,6 @@
   <!-- Template Main JS File -->
   <script src="{{ url_for('static', filename = 'js/Date.js') }}" type="text/javascript"></script>
   <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
-  <script>
-    function clockTick()    {
-      var date = new Date().toString("yyyy-MM-ddTH:mm");
-      console.log(date);
-      const elems = document.getElementsByClassName("time");
-      for(var elem of elems){
-        elem.value = date;
-      }
-    }
-    setTimeout(clockTick, 100);
-    setInterval(clockTick, 60000);
-  </script>
-
 </body>
 
 </html>

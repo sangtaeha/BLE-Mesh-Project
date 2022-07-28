@@ -201,14 +201,14 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ url_for('home_page') }}">
+        <a class="nav-link collapsed" href="{{ url_for('home_page') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url_for('components') }}">
+        <a class="nav-link collapsed " href="{{ url_for('components') }}">
           <i class="bi bi-journal-text"></i>
           <span>Components</span>
         </a>
@@ -231,12 +231,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url_for('scheduled_jobs') }}">
           <i class="bi bi-journal-text"></i>
-          <span>Scheduled Jobs</span>
+          <span>Schedule Jobs</span>
         </a>
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url_for('logs') }}">
+        <a class="nav-link " href="{{ url_for('logs') }}">
           <i class="bi bi-journal-text"></i>
           <span>Logs</span>
         </a>
@@ -310,19 +310,69 @@
       <h1>Logs</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{url_for('home_page')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{ url_for('home_page') }}">Home</a></li>
           <li class="breadcrumb-item">Logs</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
-    
+    <section class="section dashboard">
+      <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-8">
+          <div class="row">
+
+            <!-- Recent Sales -->
+            <div class="col-12">
+              <div class="card recent-sales overflow-auto">
+                  <div class="card-body">
+                    <h5 class="card-title">Logs </h5>
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Type</th>
+                          <th scope="col">log</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {% for log in logs %}
+                        
+                          <tr class="table-success">
+                            <td>{{log["type"]}}</td>
+                            <td>{{log["log"]}}</td>
+                          </tr>
+                        
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                    <!-- End Table Variants -->
+                  </div>
+
+                  <!-- Centered Pagination -->
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav><!-- End Centered Pagination -->
+              </div>
+            </div><!-- End Recent Sales -->
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
   </main><!-- End #main -->
 
-  
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">

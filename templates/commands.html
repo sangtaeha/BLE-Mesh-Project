@@ -231,7 +231,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url_for('scheduled_jobs') }}">
           <i class="bi bi-journal-text"></i>
-          <span>Scheduled Jobs</span>
+          <span>Schedule Jobs</span>
         </a>
       </li><!-- End Components Nav -->
 
@@ -326,99 +326,55 @@
             <!-- Recent Sales -->
             <div class="col-12">
               <div class="card recent-sales overflow-auto">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card">
                   <div class="card-body">
                     <h5 class="card-title">Commands </h5>
                     <table class="table">
                       <thead>
                         <tr>
-                          <th scope="col">Command #</th>
-                          <th scope="col">Frequency </th>
-                          <th scope="col">Pulse Width</th>
-                          <th scope="col">Number of Pulses</th>
+                          <th scope="col">Chip ID</th>
+                          <th scope="col">Group ID </th>
+                          <th scope="col">LED Status</th>
+                          <th scope="col">Execution Time</th>
+                          <th scope="col"></th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="table-success">
-                          <th scope="row">0010</th>
-                          <td>250 Hz</td>
-                          <td>2</td>
-                          <td>5</td>
-                        </tr>
-                        <tr class="table-success">
-                          <th scope="row">0005</th>
-                          <td>125 Hz</td>
-                          <td>4</td>
-                          <td>10</td>
-                        </tr>
-                        <tr class="table-success">
-                          <th scope="row">0006</th>
-                          <td>150 Hz</td>
-                          <td>2</td>
-                          <td>10</td>
-                        </tr>
-                        <tr class="table-danger">
-                          <th scope="row">0011</th>
-                          <td>100 Hz</td>
-                          <td>2</td>
-                          <td>15</td>
-                        </tr>
-                        <tr class="table-warning">
-                          <th scope="row">0014</th>
-                          <td>50 Hz</td>
-                          <td>1</td>
-                          <td>5</td>
-                        </tr>
-                        <tr class="table-danger">
-                          <th scope="row">0012</th>
-                          <td>500 Hz</td>
-                          <td>5</td>
-                          <td>15</td>
-                        </tr>
-                        <tr class="table-warning">
-                          <th scope="row">0021</th>
-                          <td>250 Hz</td>
-                          <td>2</td>
-                          <td>5</td>
-                        </tr>
-                        <tr class="table-info">
-                          <th scope="row">0015</th>
-                          <td>150 Hz</td>
-                          <td>1</td>
-                          <td>5</td>
-                        </tr>
-                        <tr class="table-light">
-                          <th scope="row">0013</th>
-                          <td>20 Hz</td>
-                          <td>2</td>
-                          <td>5</td>
-                        </tr>
-                        <tr class="table-warning">
-                          <th scope="row">0017</th>
-                          <td>450 Hz</td>
-                          <td>2</td>
-                          <td>5</td>
-                        </tr>
+
+                        {% for command in commands %}
+                        
+                          <tr class="table-success">
+                            <td>{{command["chip_id"]}}</td>
+                            <td>{{command["group_id"]}}</td>
+                            <td>
+                              {% if "1" in command["cmd_val"] %}
+                              <span class="badge rounded-pill bg-success">ON</span>
+                              {% else %}
+                              <span class="badge rounded-pill bg-danger">OFF</span>
+                              {% endif %}
+                            </td>
+                            <td>{{command["time"]}}</td>
+                            <td> <a href='http://127.0.0.1:5000/command/{{command["cmd_id"]}}' class="btn btn-outline-dark rounded-pill btn-sm">Edit</a> </td>
+                          </tr>
+                        
+                        {% endfor %}
+
                       </tbody>
                     </table>
                     <!-- End Table Variants -->
-      
                   </div>
-                </div>
+
+                  <!-- Centered Pagination -->
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                      </li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                      </li>
+                    </ul>
+                  </nav><!-- End Centered Pagination -->
               </div>
             </div><!-- End Recent Sales -->
             </div>
