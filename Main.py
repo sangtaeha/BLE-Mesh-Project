@@ -185,6 +185,19 @@ def pages_error_404():
 def pages_blank():
    return render_template('pages-blank.html')
 
+# Handle individual components 
+@app.route('/component/<string:chip_id>', methods=['GET','POST'])
+def component(chip_id):
+    print(session)
+    if "email" in session and session["email"]!="":
+        user_found = records.find_one({"email": session["email"]})
+        user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
+        print(user)
+
+    print(chip_id)
+    chip_info = db.chip_info.find_one({"Chip_ID":chip_id})
+    return render_template('chip_info.html', user=user, chip_info=chip_info)
+
 @app.route('/components')
 def components():
     message=''
@@ -304,12 +317,13 @@ def scheduled_jobs():
         log_data.append('\nJob with ID: \n'.format(str(job["_id"])))
         time_delta = delta_to_string(datetime.now() - datetime.strptime(job["execution_time"], fmt))
         job_exec["time"], job_exec["font"] = time_delta
-        cmds_search = db.commands.find({"_id":job["_id"]})
-        job_exec["chip_id"] = cmds_search[0]["chip_id"]
-        job_exec["group_id"] = cmds_search[0]["group_id"]
-        job_exec["cmd_val"] = cmds_search[0]["cmd_val"]
-        user_execute.append(job_exec)
-        log_data.append(json.dumps(job_exec))
+        cmds_search = list(db.commands.find({"_id":job["_id"]}))
+        if len(cmds_search) != 0:
+            job_exec["chip_id"] = cmds_search[0]["chip_id"]
+            job_exec["group_id"] = cmds_search[0]["group_id"]
+            job_exec["cmd_val"] = cmds_search[0]["cmd_val"]
+            user_execute.append(job_exec)
+            log_data.append(json.dumps(job_exec))
     
     # filling recent activity: jobs in queue section
     jobs = db.queue_jobs.aggregate([

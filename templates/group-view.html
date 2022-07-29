@@ -356,7 +356,7 @@
                     <tbody>
                       {% for chip_id, chip_info in group["chip_info"].items() %}
                       <tr>
-                        <th scope="row"><a href='http://127.0.0.1:5000/component/{{chip_info["Chip_ID"]}}'></a>{{chip_info["Chip_ID"]}}</a></th>
+                        <td><a href='http://127.0.0.1:5000/component/{{chip_info["Chip_ID"]}}'><strong>{{chip_info["Chip_ID"]}}</strong></a></td>
                         <td>{{chip_info["Name"]}}</td>
                         <td>{{chip_info["UUID"]}}</td>
                         <td>
