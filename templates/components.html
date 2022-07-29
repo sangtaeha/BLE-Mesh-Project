@@ -320,7 +320,7 @@
       <div class="row">
 
         <!-- Left side columns -->
-        <div class="col-lg-8">
+        <div class="col-lg-12">
           <div class="row">
 
             <!-- Recent Sales -->
@@ -341,47 +341,36 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Relay Nodes </h5>
+                  <h5 class="card-title">Bluetooth Low Eneregy Nodes </h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
                       <tr>
-                        <th scope="col">Chip #</th>
+                        <th scope="col">Chip ID</th>
                         <th scope="col">Chip Name</th>
                         <th scope="col">Group #</th>
-                        <th scope="col">MAC Address</th>
-                        <th scope="col">Node State</th>
+                        <th scope="col">UUID</th>
+                        <th scope="col">Status</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#1011</a></th>
-                        <td>Relay Node @floor 13-1</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>F4:4E:FD:F2:29:91</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#1012</a></th>
-                        <td>Relay Node @floor 13-2</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>F4:4E:FA:F2:29:92</td>
-                        <td><span class="badge bg-danger">Failed</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#1021</a></th>
-                        <td>Relay Node @floor 12</td>
-                        <td><a href="#" class="text-primary">#3</a></td>
-                        <td>4D:4E:1D:E2:29:91</td>
-                        <td><span class="badge bg-warning">Restarting</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#1022</a></th>
-                        <td>Relay Node @floor 10</td>
-                        <td><a href="#" class="text-primary">#1</a></td>
-                        <td>34:1A:ED:F1:39:91</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
+                      <div class="activity">
+                        {% for chip in chips %}
+                        <tr>
+                          <th scope="row"><a href='http://127.0.0.1:5000/component/{{chip["Chip_ID"]}}'>{{chip["Chip_ID"]}}</a></th>
+                          <td>{{chip["Name"]}}</td>
+                          <td>{{chip["Group_ID"]}}</td>
+                          <td>{{chip["UUID"]}}</td>
+                          <td>
+                          {% if "ON" in chip["Status"] %}
+                          <span class="badge rounded-pill bg-success">ON</span>
+                          {% else %}
+                          <span class="badge rounded-pill bg-danger">OFF</span>
+                          {% endif %} </td>
+                        </tr>        
+                        {% endfor %}
+        
+                      </div>
                     </tbody>
                   </table>
 
@@ -408,7 +397,7 @@
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Low Power Nodes </h5>
+                  <h5 class="card-title">Proxy Nodes </h5>
 
                   <table class="table table-borderless datatable">
                     <thead>
@@ -420,156 +409,6 @@
                         <th scope="col">Node State</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#0011</a></th>
-                        <td>Mouse 1</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>38:18:4C:1A:3E:65</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#0012</a></th>
-                        <td>Mouse 2</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>94:DB:56:AC:5A:D2</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#0021</a></th>
-                        <td>Mouse 3</td>
-                        <td><a href="#" class="text-primary">#3</a></td>
-                        <td>51:E5:E6:7B:22:B5</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#0022</a></th>
-                        <td>Mouse 4</td>
-                        <td><a href="#" class="text-primary">#1</a></td>
-                        <td>53:E4:FF:BD:63:C1</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                </div>
-
-              </div>
-            </div><!-- End Recent Sales -->
-
-            <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Friend Nodes </h5>
-
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">Chip #</th>
-                        <th scope="col">Chip Name</th>
-                        <th scope="col">Group #</th>
-                        <th scope="col">MAC Address</th>
-                        <th scope="col">Node State</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#0111</a></th>
-                        <td>Friend Node for Mouse 1</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>51:E5:E6:7B:22:B5</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#0112</a></th>
-                        <td>Friend Node for Mouse 2</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>48:B4:23:0E:E8:05</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#0121</a></th>
-                        <td>Friend Node for Mouse 3</td>
-                        <td><a href="#" class="text-primary">#3</a></td>
-                        <td>44:28:A9:A3:B9:7A</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#0122</a></th>
-                        <td>Friend Node for Mouse 4</td>
-                        <td><a href="#" class="text-primary">#1</a></td>
-                        <td>6C:4A:85:52:A3:38</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                </div>
-
-              </div>
-            </div><!-- End Recent Sales -->
-
-            <!-- Recent Sales -->
-            <div class="col-12">
-              <div class="card recent-sales overflow-auto">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body">
-                  <h5 class="card-title">Proxy Nodes <span>| Today</span></h5>
-
-                  <table class="table table-borderless datatable">
-                    <thead>
-                      <tr>
-                        <th scope="col">Chip #</th>
-                        <th scope="col">Chip Name</th>
-                        <th scope="col">Group #</th>
-                        <th scope="col">MAC Address</th>
-                        <th scope="col">Node State</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#0211</a></th>
-                        <td>Proxy Node 1</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>6B:02:09:0F:3B:13</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#0212</a></th>
-                        <td>Proxy Node 2</td>
-                        <td><a href="#" class="text-primary">#2</a></td>
-                        <td>5D:56:D6:D0:8B:C8</td>
-                        <td><span class="badge bg-success">Active</span></td>
-                      </tr>
-                    </tbody>
                   </table>
 
                 </div>

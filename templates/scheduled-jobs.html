@@ -201,7 +201,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ url_for('home_page') }}">
+        <a class="nav-link collapsed" href="{{ url_for('home_page') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -229,7 +229,7 @@
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url_for('scheduled_jobs') }}">
+        <a class="nav-link " href="{{ url_for('scheduled_jobs') }}">
           <i class="bi bi-journal-text"></i>
           <span>Schedule Jobs</span>
         </a>
@@ -402,7 +402,14 @@
                     {% else %}
                     <span class="badge rounded-pill bg-danger">OFF</span>
                     {% endif %}
-                    for chips with <a href="#" class="fw-bold text-dark">Chip: {{job["chipId"]}}</a> and <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
+                    {% if job["chip_id"]|length > 0 %}
+                    for <a href="#" class="fw-bold text-dark">Chip: {{job["chip_id"]}}</a> and
+                    {% else %}
+                    for all chips with
+                    {% endif %}
+                    {% if job["group_id"]|length > 0 %}
+                    <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
+                    {% endif %}
                   </div>
                 </div><!-- End activity item-->
 
@@ -429,7 +436,14 @@
                     {% else %}
                     <span class="badge rounded-pill bg-danger">OFF</span>
                     {% endif %}
-                    for chips with <a href="#" class="fw-bold text-dark">Chip: {{job["chipId"]}}</a> and <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
+                    {% if job["chip_id"]|length > 0%}
+                    for <a href="#" class="fw-bold text-dark">Chip: {{job["chip_id"]}}</a> and
+                    {% else %}
+                    for all chips with
+                    {% endif %}
+                    {% if job["group_id"]|length > 0 %}
+                    <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
+                    {% endif %}
                   </div>
                 </div><!-- End activity item-->
 

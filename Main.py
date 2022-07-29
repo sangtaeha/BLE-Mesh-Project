@@ -1,11 +1,9 @@
 from crypt import methods
-import queue
 from flask import Flask, render_template, request, url_for, redirect, session
-import pymongo
-import bcrypt
+import pymongo, bcrypt, json, queue
 from datetime import datetime
+from datetime import timedelta
 from bson import ObjectId
-import json
 
 app = Flask(__name__)
 app.secret_key = "testing"
@@ -164,7 +162,24 @@ def pages_login():
 
 @app.route('/pages_error_404')
 def pages_error_404():
-   return render_template('pages-error-404.html')
+    f = open("./Mesh_demo.json")
+    data = json.load(f)
+    groups = {}
+    for chip in data:
+        chip["Status"]="ON"
+        db.chip_info.insert_one(chip)
+        if chip["Group_ID"] in groups:
+            grp = groups[chip["Group_ID"]]
+            grp["chip_info"][chip["Chip_ID"]] = chip
+            groups[chip["Group_ID"]] = grp
+        else:
+            grp = {"Group_ID":chip["Group_ID"], "Group_handle": chip["Group_ID_handle"], "chip_info":{ chip["Chip_ID"]:chip } }
+            groups[chip["Group_ID"]]=grp
+    
+    # insert groups dict to db
+    for (grp_id, grp_info) in groups.items():
+        db.group_info.insert_one(grp_info)
+    return render_template('pages-error-404.html')
 
 @app.route('/pages_blank')
 def pages_blank():
@@ -178,7 +193,12 @@ def components():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    return render_template('components.html', user=user)
+    
+    chips = db.chip_info.find()
+    chip_info = []
+    for chip in chips:
+        chip_info.append(chip)
+    return render_template('components.html', user=user, chips=chip_info)
    
 @app.route('/group_view')
 def group_view():
@@ -187,7 +207,13 @@ def group_view():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    return render_template('group-view.html', user=user)
+    
+    groups = db.group_info.find()
+    group_info = []
+    for group in groups:
+        group_info.append(group)
+    print(group_info)
+    return render_template('group-view.html', user=user, group_info=group_info)
 
 @app.route('/bluetooth_devices')
 def bluetooth_devices():
@@ -198,6 +224,7 @@ def bluetooth_devices():
         print(user)
     return render_template('bluetooth-devices.html', user=user)
 
+# TO DO: While scheduling the jobs itself create the commands.txt file
 @app.route('/scheduled_jobs', methods=['post','get'])
 def scheduled_jobs():
     message = ''
@@ -207,9 +234,8 @@ def scheduled_jobs():
         print(user)
     
     # update the db and call the same 
-    time_curr = datetime.now().strftime(fmt)
+    time_curr = datetime.now().strftime(fmt)    # string object
     log_data = []
-    str1 = ""
     if request.method == "POST":
         cmd = request.form.get("todocmd")
         if "on" in cmd:
@@ -222,23 +248,48 @@ def scheduled_jobs():
         start_time = request.form.get("starttime")
         end_time = request.form.get("endtime")
         interval = request.form.get("interval")
+        print(interval)
 
-        # if job is to be run now update the executed jobs
-        time_to_execute = time_now
-        cmd_input = {'chip_id': chip_id, 'group_id': group_id, 'cmd_val': cmd_val}
-        log_data.append(json.dumps(cmd_input))
-        cmd_id = db.commands.insert_one(cmd_input).inserted_id
-        job_input = {'cmd_id': str(cmd_id), 'execution_time': time_to_execute}        
-        log_data.append(json.dumps(job_input))
+        # immediate scheduling
+        if interval is "":
+            time_to_execute = time_now
+            cmd_input = {'chip_id': chip_id, 'group_id': group_id, 'cmd_val': cmd_val}
+            log_data.append(json.dumps(cmd_input))
+            cmd_id = db.commands.insert_one(cmd_input).inserted_id
+            job_input = {'_id': cmd_id, 'execution_time': time_to_execute}        
+            #log_data.append(json.dumps(job_input))
 
-        # check the timestamp for execution
-        if (time_now > time_curr):
-            log_data.append("Scheduling adn adding to the queue of jobs that needs to be executed")
-            db.queue_jobs.insert_one(job_input)
+            # check the timestamp for execution
+            if (time_to_execute > time_curr):
+                log_data.append("Scheduling and adding to the queue of jobs that needs to be executed")
+                db.queue_jobs.insert_one(job_input)
+            else:
+                log_data.append("Scheduling Immediately")
+                db.executed.insert_one(job_input)
+        
+        # this is scheduling periodic intervals
         else:
-            log_data.append("Scheduling Immediately")
-            db.executed.insert_one(job_input)
+            new_time = (datetime.strptime(start_time, fmt)+timedelta(seconds=int(interval))).strftime(fmt)
+            while(end_time >= new_time):
+                print(new_time)
+                time_to_execute = new_time
+                cmd_input = {'chip_id': chip_id, 'group_id': group_id, 'cmd_val': cmd_val}
+                log_data.append("recursive adding"+json.dumps(cmd_input))
+                cmd_id = db.commands.insert_one(cmd_input).inserted_id
+                job_input = {'_id': cmd_id, 'execution_time': time_to_execute} 
+                #log_data.append(json.dumps(job_input))
 
+                # check the timestamp for execution
+                if (time_to_execute > time_curr):
+                    log_data.append("Scheduling and adding to the queue of jobs that needs to be executed")
+                    db.queue_jobs.insert_one(job_input)
+                else:
+                    log_data.append("Scheduling Immediately")
+                    db.executed.insert_one(job_input)
+                
+                # update the time
+                new_time = (datetime.strptime(time_to_execute, fmt)+timedelta(seconds=int(interval))).strftime(fmt)
+        
     # filling recent activity: jobs done so far section
     jobs = db.executed.aggregate([
                 { "$sort": {"execution_time": -1}},
@@ -246,21 +297,19 @@ def scheduled_jobs():
                 ])
     executedjobs = jobs
     user_execute = []
-    i=0
     for job in executedjobs:
         job_exec = {}
         if time_curr < job["execution_time"]:
             continue
-        log_data.append('\nJob with ID: \n'.format(job["cmd_id"]))
-        timedelta = delta_to_string(datetime.now() - datetime.strptime(job["execution_time"], fmt))
-        job_exec["time"], job_exec["font"] = timedelta
-        cmds_search = db.commands.find({"_id":ObjectId(job["cmd_id"])})
-        job_exec["chipId"] = cmds_search[0]["chip_id"]
+        log_data.append('\nJob with ID: \n'.format(str(job["_id"])))
+        time_delta = delta_to_string(datetime.now() - datetime.strptime(job["execution_time"], fmt))
+        job_exec["time"], job_exec["font"] = time_delta
+        cmds_search = db.commands.find({"_id":job["_id"]})
+        job_exec["chip_id"] = cmds_search[0]["chip_id"]
         job_exec["group_id"] = cmds_search[0]["group_id"]
         job_exec["cmd_val"] = cmds_search[0]["cmd_val"]
         user_execute.append(job_exec)
         log_data.append(json.dumps(job_exec))
-        i+=1
     
     # filling recent activity: jobs in queue section
     jobs = db.queue_jobs.aggregate([
@@ -268,7 +317,6 @@ def scheduled_jobs():
             { "$limit": 7} 
         ])
     jobsqueue = jobs
-    i=0
     user_queue=[]
     for job in jobsqueue:
         print(job)
@@ -276,14 +324,13 @@ def scheduled_jobs():
         if time_curr > job["execution_time"]:
             continue
         job_exec["time"],job_exec["font"] = delta_to_string(datetime.strptime(job["execution_time"], fmt) - datetime.now())
-        log_data.append('\nJob with ID: \n'.format(job["cmd_id"]))
-        cmds_search = db.commands.find({"_id":ObjectId(job["cmd_id"])})
-        job_exec["chipId"] = cmds_search[0]["chip_id"]
+        log_data.append('\nJob with ID: \n'.format(str(job["_id"])))
+        cmds_search = db.commands.find({"_id":job["_id"]})
+        job_exec["chip_id"] = cmds_search[0]["chip_id"]
         job_exec["group_id"] = cmds_search[0]["group_id"]
         job_exec["cmd_val"] = cmds_search[0]["cmd_val"]
         user_queue.append(job_exec)
         log_data.append(json.dumps(job_exec))
-        i+=1
 
     for log in log_data:
         lg = {}
@@ -366,11 +413,11 @@ def commands():
         time_curr = datetime.now().strftime(fmt)
         if time_curr > job["execution_time"]:
             continue
-        command = db.commands.find_one({"_id":ObjectId(job["cmd_id"])})
+        command = db.commands.find_one({"_id":job["_id"]})
         main_command["chip_id"] = command["chip_id"]
         main_command["group_id"] = command["group_id"]
         main_command["cmd_val"] = command["cmd_val"]
-        main_command["cmd_id"] = str(command["_id"])
+        main_command["_id"] = str(command["_id"])
         duration = datetime.strptime(job["execution_time"], fmt)-datetime.now()
         print(duration)
         main_command["time"], main_command["font"] = delta_to_string(duration)
