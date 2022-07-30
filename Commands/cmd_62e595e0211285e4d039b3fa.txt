@@ -1,0 +1,6 @@
+db = MeshDB("database/example_database.json")
+db.nodes
+gc = GenericOnOffClient()
+device.model_add(gc)
+gc.publish_set(2, 7)
+gc.set(False)

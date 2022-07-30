@@ -349,17 +349,17 @@
                   </ul>
                   <div class="tab-content pt-2" id="myTabContent">
                     <div class="tab-pane fade show active" id="ScheduleOnce" role="tabpanel" aria-labelledby="home-tab">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <label for="validationDefault03" class="form-label">Time</label>
                         <input type="datetime-local" name="timenow" class="form-control time" id="TimeNow" required>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="ScheduleDaily" role="tabpanel" aria-labelledby="profile-tab">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <label for="validationDefault03" class="form-label">Start Time</label>
                         <input type="datetime-local" name="starttime" class="form-control time" id="DailyStartTime" required>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <label for="validationDefault03" class="form-label">End Time</label>
                         <input type="datetime-local" name="endtime" class="form-control time" id="DailyEndTime" required>
                       </div>
@@ -403,12 +403,12 @@
                     <span class="badge rounded-pill bg-danger">OFF</span>
                     {% endif %}
                     {% if job["chip_id"]|length > 0 %}
-                    for <a href="#" class="fw-bold text-dark">Chip: {{job["chip_id"]}}</a> and
+                    for <a href='http://127.0.0.1:5000/component/{{job["Chip_ID"]}}' class="fw-bold text-dark">Chip: {{job["chip_id"]}}</a>
                     {% else %}
-                    for all chips with
+                    for all chips
                     {% endif %}
                     {% if job["group_id"]|length > 0 %}
-                    <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
+                    with <a href='http://127.0.0.1:5000/group_view'  class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
                     {% endif %}
                   </div>
                 </div><!-- End activity item-->
@@ -437,12 +437,12 @@
                     <span class="badge rounded-pill bg-danger">OFF</span>
                     {% endif %}
                     {% if job["chip_id"]|length > 0%}
-                    for <a href="#" class="fw-bold text-dark">Chip: {{job["chip_id"]}}</a> and
+                    for <a href='http://127.0.0.1:5000/component/{{job["chip_id"]}}' class="fw-bold text-dark">Chip: {{job["chip_id"]}}</a>
                     {% else %}
-                    for all chips with
+                    for all chips
                     {% endif %}
                     {% if job["group_id"]|length > 0 %}
-                    <a href="#" class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
+                    with <a href='http://127.0.0.1:5000/group_view'  class="fw-bold text-dark">Group: {{job["group_id"]}}</a>
                     {% endif %}
                   </div>
                 </div><!-- End activity item-->

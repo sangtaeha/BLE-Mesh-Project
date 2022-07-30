@@ -350,23 +350,20 @@
                     <li class="nav-item" role="presentation">
                       <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#ScheduleDaily" type="button" role="tab" aria-controls="profile" aria-selected="false">Schedule Periodic</button>
                     </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#AdvScehduling" type="button" role="tab" aria-controls="contact" aria-selected="false">Advanced Scheduling</button>
-                    </li>
                   </ul>
                   <div class="tab-content pt-2" id="myTabContent">
                     <div class="tab-pane fade show active" id="ScheduleOnce" role="tabpanel" aria-labelledby="home-tab">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <label for="validationDefault03" class="form-label">Time</label>
-                        <input type="datetime-local" name="timenow" class="form-control time" value='{{jobs["execution_time"]}}' id="TimeNow" required>
+                        <input type="datetime-local" name="timenow" class="form-control time" id="TimeNow" required>
                       </div>
                     </div>
                     <div class="tab-pane fade" id="ScheduleDaily" role="tabpanel" aria-labelledby="profile-tab">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <label for="validationDefault03" class="form-label">Start Time</label>
                         <input type="datetime-local" name="starttime" class="form-control time" id="DailyStartTime" required>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <label for="validationDefault03" class="form-label">End Time</label>
                         <input type="datetime-local" name="endtime" class="form-control time" id="DailyEndTime" required>
                       </div>
@@ -375,27 +372,13 @@
                         <input type="text" name="interval" class="form-control" id="validationDefault03" placeholder="10" required>
                       </div>
                     </div>
-                    <div class="tab-pane fade" id="AdvScehduling" role="tabpanel" aria-labelledby="contact-tab">
-                      <div class="col-md-4">
-                        <label for="validationDefault03" class="form-label">Start Time</label>
-                        <input type="datetime-local" name="starttime" class="form-control" id="timenow" required>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="validationDefault03" class="form-label">End Time</label>
-                        <input type="datetime-local" name="endtime" class="form-control" id="timenow" required>
-                      </div>
-                      <div class="col-md-4">
-                        <label for="validationDefault03" class="form-label">Interval</label>
-                        <input type="text" name="interval" class="form-control" id="validationDefault03" required>
-                      </div>
-                    </div>
                   </div><!-- End Default Tabs -->
                 </div>
                 <div class="col-12">
                   <button class="btn btn-primary rounded-pill" name="todocmd" value='{{commands["_id"]}}' type="submit" >Submit</button>
                 </div>
               </form>
-              <!-- End Browser Default Validation -->
+              <!-- End Brocmdwser Default Validation -->
 
             </div>
           </div>
