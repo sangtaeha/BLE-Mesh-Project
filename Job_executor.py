@@ -3,13 +3,15 @@ import pymongo
 from datetime import datetime
 import json
 from bson import ObjectId
-import subprocess
+import subprocess, os
 
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
 db = client.get_database('total_records')
 
 fmt = '%Y-%m-%dT%H:%M'
 home_dir = '/home/matsy007/Downloads/Mesh/BLE-Mesh-Project/Commands/'
+# home_dir = '/home/pi/BLE/BLE-Mesh-Project/Commands/'
+home_database_json = '/home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/database/example_database.json'
 
 # remove from queue and add to executed jobs
 def getJobs():
@@ -46,20 +48,21 @@ def getJobs():
         # doing it here so that even if commands if I gen file here => no race condition
         file_name = home_dir+'cmd_'+str(job_id)+'.txt'
         with open(file_name,"a") as cmd_file:
-            cmd_file.write('db = MeshDB("database/example_database.json")\n')
+            cmd_file.write("db = MeshDB('{0}')\n".format(home_database_json))
             cmd_file.write('db.nodes\n')
             cmd_file.write('gc = GenericOnOffClient()\n')
             cmd_file.write('device.model_add(gc)\n')
             # check if you have to light entire group or chip alone
             cmd_file.write('gc.publish_set({0}, {1})\n'.format(app_key, address_handle))
-            if cmd["cmd_val"]==1:
+            if cmd["cmd_val"] is "1":
                 cmd_file.write('gc.set(True)\n')
             else:
                 cmd_file.write('gc.set(False)\n')
 
         # TO DO: run the interactive python shell script system command
         print("Running the system command: "+file_name)
-        subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
+        #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
+        os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM1 < "+file_name)
         
         # TO DO: delete the command*.txt files too
         #subprocess.run(["rm","-rf",file_name])
