@@ -5,6 +5,7 @@ from datetime import datetime
 from datetime import timedelta
 from bson import ObjectId
 import subprocess, signal, os
+from time import sleep
 
 app = Flask(__name__)
 app.secret_key = "testing"
@@ -189,6 +190,35 @@ def pages_error_404():
 def pages_blank():
    return render_template('pages-blank.html')
 
+# Code for running the job immediately
+def run_group_change(chip_id, old_group_id, new_group_id):
+    chips_search = list(db.chip_info.find({"Chip_ID":chip_id}))
+    chip = chips_search[0]
+        
+    device_key = chip["Dev_key_handle"]
+    address_handle = chip["Address_handle"]
+
+    # TO DO: create the file    
+    file_name = home_dir+'cmd_'+str(chip_id)+'_'+str(old_group_id)+'_'+str(new_group_id)+'.txt'
+    with open(file_name,"a") as cmd_file:
+        cmd_file.write("db = MeshDB('{0}')\n".format(home_database_json))
+        cmd_file.write('cc = ConfigurationClient(db)\n')
+        cmd_file.write('cc.force_segmented = True\n')
+        cmd_file.write('device.model_add(cc)\n')
+        cmd_file.write('cc.publish_set({0}, {1})\n'.format(device_key, address_handle))
+        cmd_file.write('cc.model_app_unbind(db.nodes[{0}].unicast_address, {1}, mt.ModelId(0x1000))\n'.format(address_handle, old_group_id))
+        cmd_file.write('cc.model_app_bind(db.nodes[{0}].unicast_address, {1}, mt.ModelId(0x1000))\n'.format(address_handle, new_group_id))
+        
+
+    # TO DO: run the interactive python shell script system command
+    print("Changing the group from: {0} to {1} and file is: {2} ".format(old_group_id, new_group_id, file_name))
+
+    #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
+    os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM1 < "+file_name)
+
+    # TO DO: delete the command*.txt files too
+    #subprocess.run(["rm","-rf",file_name])
+
 # Handle individual components 
 @app.route('/component/<string:chip_id>', methods=['GET','POST'])
 def component(chip_id):
@@ -197,6 +227,40 @@ def component(chip_id):
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
+
+    if request.method == "POST":
+        updated_cmd = {}
+        updated_job = {}
+        chip = request.form.get("todocmd")
+        print("Chip_id is "+chip_id)
+        chip_name = request.form.get("chipName")
+        old_group_id = list(db.chip_info.find({"Chip_ID":chip_id}))[0]["Group_ID"]
+        new_group_id = request.form.get("groupID")
+        print(new_group_id)
+
+        # update the chip_info 
+        if (old_group_id == new_group_id)  or (new_group_id == ""):
+            print("Same value")
+            return redirect(url_for('components'))
+        else:
+            filter = {'Chip_ID':chip_id}
+            newValue = {'$set':{'Group_ID':new_group_id}}
+            db.chip_info.update_one(filter, newValue, upsert=False)
+
+            # update the group_info too
+            chip_info = list(db.group_info.find({"Group_ID":old_group_id}))[0]["chip_info"]
+            chip_info.remove(chip_id)
+            db.group_info.update_one({"Group_ID":old_group_id}, {'$set':{'chip_info':chip_info}}, upsert=False)
+            
+            # add this chip to new group
+            chip_info = list(db.group_info.find({"Group_ID":new_group_id}))[0]["chip_info"]
+            chip_info.append(chip_id)
+            db.group_info.update_one({"Group_ID":new_group_id}, {'$set':{'chip_info':chip_info}}, upsert=False)
+            
+            # run group change command on Pi
+            run_group_change(chip_id, old_group_id, new_group_id)
+
+            return redirect(url_for('components'))
 
     print(chip_id)
     chip_info = db.chip_info.find_one({"Chip_ID":chip_id})
@@ -279,7 +343,7 @@ def run_command(cmd_id):
         else:
             newValue = {'$set':{'Status':"OFF"}}
         db.chip_info.update_one(filter, newValue, upsert=False)
-
+    sleep(5)
 
     # TO DO: create the file    
     file_name = home_dir+'cmd_'+str(cmd_id)+'.txt'

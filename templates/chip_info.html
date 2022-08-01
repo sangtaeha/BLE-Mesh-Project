@@ -251,68 +251,68 @@
         <div class="col-lg-10">
             <div class="row">
 
-                <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">nRF52840 </h5>
-        
-                      <!-- Horizontal Form -->
-                      <form method="post">
-                        <div class="row mb-3">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Segger ID</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="chipID" value='{{chip_info["Chip_ID"]}}' readonly >
-                            </div>
-                          </div>
-                        <div class="row mb-3">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="chipName" value='{{chip_info["Name"]}}' readonly >
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">UUID</label>
-                          <div class="col-sm-10">
-                            <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["UUID"]}}</label>
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">Group</label>
-                            <div class="col-sm-10">
-                              <input type="text" class="form-control" id="groupID" value='{{chip_info["Group_ID"]}}' readonly >
-                            </div>
-                          </div>
-                        <div class="row mb-3">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Device Key</label>
-                          <div class="col-sm-10">
-                            <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["Device_key"]}}</label>
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Network Key</label>
-                          <div class="col-sm-10">
-                            <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["NetKeys"]}}</label>
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                          <label for="inputEmail3" class="col-sm-2 col-form-label">Model ID</label>
-                          <div class="col-sm-10">
-                            <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["modelId"]}}</label>
-                          </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Status</label>
-                        <div class="col-sm-10">                            
-                            {% if "ON" in chip_info["Status"] %}
-                            <span class="badge rounded-pill bg-success">ON</span>
-                            {% else %}
-                            <span class="badge rounded-pill bg-danger">OFF</span>
-                            {% endif %}
-                        </div>
-                        </div>
-                      </form><!-- End Horizontal Form -->
-        
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">nRF52840 </h5>
+    
+                <!-- Horizontal Form -->
+                <form method="post">
+                  <div class="row mb-3">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Segger ID</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="chipID" value='{{chip_info["Chip_ID"]}}' readonly >
+                      </div>
+                    </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" name="chipName" value='{{chip_info["Name"]}}' readonly >
                     </div>
                   </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">UUID</label>
+                    <div class="col-sm-10">
+                      <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["UUID"]}}</label>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                      <label for="inputPassword3" class="col-sm-2 col-form-label">Group</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="groupID" placeholder='{{chip_info["Group_ID"]}}' >
+                      </div>
+                    </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Device Key</label>
+                    <div class="col-sm-10">
+                      <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["Device_key"]}}</label>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Network Key</label>
+                    <div class="col-sm-10">
+                      <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["NetKeys"]}}</label>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">Model ID</label>
+                    <div class="col-sm-10">
+                      <label for="inputEmail3" class="col-sm-10 col-form-label">{{chip_info["modelId"]}}</label>
+                    </div>
+                  </div>
+                  <div class="row mb-3">
+                      <label for="inputEmail3" class="col-sm-2 col-form-label">Status</label>
+                  <div class="col-sm-10">                            
+                      {% if "ON" in chip_info["Status"] %}
+                      <span class="badge rounded-pill bg-success">ON</span>
+                      {% else %}
+                      <span class="badge rounded-pill bg-danger">OFF</span>
+                      {% endif %}
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary rounded-pill" name="todocmd" type="submit" >Submit</button>
+                  </div>
+                </form><!-- End Horizontal Form -->
+              </div>
             </div>
         </div> 
         <!-- Recent Sales -->

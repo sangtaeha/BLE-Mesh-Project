@@ -52,6 +52,7 @@ def getJobs():
             else:
                 newValue = {'$set':{'Status':"OFF"}}
             db.chip_info.update_one(filter, newValue, upsert=False)
+        sleep(5)
 
         # log_data.append(json.dumps(job, indent=4))        
         job_id = job["_id"]
@@ -110,4 +111,4 @@ if __name__ == '__main__':
         print("##########################################################################################")
         getJobs()
         print("##########################################################################################")
-        sleep(30)
+        sleep(25)

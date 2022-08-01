@@ -1,0 +1,43 @@
+ssh pi@128.138.224.251
+ssh pi@raspberrypi.local
+chupist
+
+sudo dmesg | tail
+sudo dmesg | grep -C 3 SEGGER
+
+cd ~/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/
+python3 interactive_pyaci.py -d /dev/ttyACM1
+
+db = MeshDB("database/example_database.json")
+db.provisioners
+p = Provisioner(device, db)
+
+gc = GenericOnOffClient()
+gc.force_segmented = True
+device.model_add(gc)
+gc.publish_set(3,25)
+gc.set(True)
+gc.set(False)
+gc.get()
+
+cc = ConfigurationClient(db)
+cc.force_segmented = True
+device.model_add(cc)
+
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #25")
+
+cc.publish_set(32, 24)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_unbind(db.nodes[24].unicast_address, 4, mt.ModelId(0x1000))
+cc.model_app_bind(db.nodes[24].unicast_address, 3, mt.ModelId(0x1000))
+cc.model_subscription_add(db.nodes[20].unicast_address, 0xc001, mt.ModelId(0x1000))
+
+device.send(cmd.AddrSubscriptionAdd(0xc001))
+
