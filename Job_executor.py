@@ -26,15 +26,32 @@ def getJobs():
         cmd_id = job["_id"]
         cmds_search = list(db.commands.find({"_id":job["_id"]}))
         cmd = cmds_search[0]
+
         # turn the entire group on or off
         if cmd['chip_id'] is "" :
             chips_search = list(db.chip_info.find({"Group_ID":cmd["group_id"]}))
             app_key = chips_search[0]["Group_ID"]
             address_handle = chips_search[0]["Group_ID_handle"]
+
+            # update the group chip status
+            filter = {'Group_ID':cmd["group_id"]}
+            if cmd["cmd_val"] is "1":
+                newValue = {'$set':{'Status':"ON"}}
+            else:
+                newValue = {'$set':{'Status':"OFF"}}
+            db.chip_info.update_many(filter, newValue, upsert=False)
         else:
             chips_search = list(db.chip_info.find({"Chip_ID":cmd["chip_id"]}))
             app_key = chips_search[0]["Group_ID"]
             address_handle = chips_search[0]["Address_handle"]
+
+            # update the chip status in chip_info 
+            filter = {'Chip_ID':cmd["chip_id"]}
+            if cmd["cmd_val"] is "1":
+                newValue = {'$set':{'Status':"ON"}}
+            else:
+                newValue = {'$set':{'Status':"OFF"}}
+            db.chip_info.update_one(filter, newValue, upsert=False)
 
         # log_data.append(json.dumps(job, indent=4))        
         job_id = job["_id"]
