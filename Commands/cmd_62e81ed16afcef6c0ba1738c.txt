@@ -1,0 +1,6 @@
+db = MeshDB('/home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/database/example_database.json')
+db.nodes
+gc = GenericOnOffClient()
+device.model_add(gc)
+gc.publish_set(1, 5)
+gc.set(True)

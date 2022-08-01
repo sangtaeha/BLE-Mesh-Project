@@ -171,14 +171,13 @@ def pages_error_404():
     data = json.load(f)
     groups = {}
     for chip in data:
-        chip["Status"]="ON"
         db.chip_info.insert_one(chip)
         if chip["Group_ID"] in groups:
             grp = groups[chip["Group_ID"]]
-            grp["chip_info"][chip["Chip_ID"]] = chip
+            grp["chip_info"].append(chip["Chip_ID"])
             groups[chip["Group_ID"]] = grp
         else:
-            grp = {"Group_ID":chip["Group_ID"], "Group_handle": chip["Group_ID_handle"], "chip_info":{ chip["Chip_ID"]:chip } }
+            grp = {"Group_ID":chip["Group_ID"], "Group_handle": chip["Group_ID_handle"], "chip_info":[chip["Chip_ID"]] }
             groups[chip["Group_ID"]]=grp
     
     # insert groups dict to db
@@ -227,11 +226,16 @@ def group_view():
         print(user)
     
     groups = db.group_info.find()
+    chips = db.chip_info.find()
+    chip_info = {}
+    for chip in chips:
+        chip_info[chip["Chip_ID"]] = chip
+    
     group_info = []
     for group in groups:
         group_info.append(group)
     print(group_info)
-    return render_template('group-view.html', user=user, group_info=group_info)
+    return render_template('group-view.html', user=user, group_info=group_info, chip_info=chip_info)
 
 @app.route('/bluetooth_devices')
 def bluetooth_devices():
@@ -254,10 +258,28 @@ def run_command(cmd_id):
         chips_search = list(db.chip_info.find({"Group_ID":cmd["group_id"]}))
         app_key = chips_search[0]["Group_ID"]
         address_handle = chips_search[0]["Group_ID_handle"]
+
+        # update the group chip status
+        filter = {'Group_ID':cmd["group_id"]}
+        if cmd["cmd_val"] is "1":
+            newValue = {'$set':{'Status':"ON"}}
+        else:
+            newValue = {'$set':{'Status':"OFF"}}
+        db.chip_info.update_many(filter, newValue, upsert=False)
+
     else:
         chips_search = list(db.chip_info.find({"Chip_ID":cmd["chip_id"]}))
         app_key = chips_search[0]["Group_ID"]
         address_handle = chips_search[0]["Address_handle"]
+
+        # update the chip status in chip_info 
+        filter = {'Chip_ID':cmd["chip_id"]}
+        if cmd["cmd_val"] is "1":
+            newValue = {'$set':{'Status':"ON"}}
+        else:
+            newValue = {'$set':{'Status':"OFF"}}
+        db.chip_info.update_one(filter, newValue, upsert=False)
+
 
     # TO DO: create the file    
     file_name = home_dir+'cmd_'+str(cmd_id)+'.txt'

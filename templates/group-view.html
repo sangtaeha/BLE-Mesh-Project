@@ -279,13 +279,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      {% for chip_id, chip_info in group["chip_info"].items() %}
+                      {% for chip_id in group["chip_info"] %}
                       <tr>
-                        <td><a href='component/{{chip_info["Chip_ID"]}}'><strong>{{chip_info["Chip_ID"]}}</strong></a></td>
-                        <td>{{chip_info["Name"]}}</td>
-                        <td>{{chip_info["UUID"]}}</td>
+                        <td><a href='component/{{chip_info[chip_id]["Chip_ID"]}}'><strong>{{chip_info[chip_id]["Chip_ID"]}}</strong></a></td>
+                        <td>{{chip_info[chip_id]["Name"]}}</td>
+                        <td>{{chip_info[chip_id]["UUID"]}}</td>
                         <td>
-                          {% if "ON" in chip_info["Status"] %}
+                          {% if "ON" in chip_info[chip_id]["Status"] %}
                           <span class="badge rounded-pill bg-success">ON</span>
                           {% else %}
                           <span class="badge rounded-pill bg-danger">OFF</span>
