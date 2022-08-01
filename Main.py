@@ -196,7 +196,9 @@ def run_group_change(chip_id, old_group_id, new_group_id):
     chip = chips_search[0]
         
     device_key = chip["Dev_key_handle"]
+    unicast_address = chip["Unicast_address_index"]
     address_handle = chip["Address_handle"]
+
 
     # TO DO: create the file    
     file_name = home_dir+'cmd_'+str(chip_id)+'_'+str(old_group_id)+'_'+str(new_group_id)+'.txt'
@@ -206,8 +208,8 @@ def run_group_change(chip_id, old_group_id, new_group_id):
         cmd_file.write('cc.force_segmented = True\n')
         cmd_file.write('device.model_add(cc)\n')
         cmd_file.write('cc.publish_set({0}, {1})\n'.format(device_key, address_handle))
-        cmd_file.write('cc.model_app_unbind(db.nodes[{0}].unicast_address, {1}, mt.ModelId(0x1000))\n'.format(address_handle, old_group_id))
-        cmd_file.write('cc.model_app_bind(db.nodes[{0}].unicast_address, {1}, mt.ModelId(0x1000))\n'.format(address_handle, new_group_id))
+        cmd_file.write('cc.model_app_unbind(db.nodes[{0}].unicast_address, {1}, mt.ModelId(0x1000))\n'.format(unicast_address, old_group_id))
+        cmd_file.write('cc.model_app_bind(db.nodes[{0}].unicast_address, {1}, mt.ModelId(0x1000))\n'.format(unicast_address, new_group_id))
         
 
     # TO DO: run the interactive python shell script system command
