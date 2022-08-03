@@ -258,10 +258,7 @@
 
                   <!-- Line Chart -->
                   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
-                  <div>
-                    <div id="06805ab5-13fa-488f-b307-65ed921733c3" class="plotly-graph-div" style="height:100%; width:100%;"></div>
-                    <script src="{{ url_for('static', filename = 'js/plot.js') }}"></script>
-                  </div>
+                  <div>{{js|safe}}</div>
                   <!-- End Line Chart -->
 
                 </div>

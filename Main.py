@@ -6,6 +6,12 @@ from datetime import timedelta
 from bson import ObjectId
 import subprocess, signal, os
 from time import sleep
+import igraph as ig
+import json
+import urllib3
+import plotly as py
+import plotly.graph_objs as go
+
 
 app = Flask(__name__)
 app.secret_key = "testing"
@@ -60,9 +66,90 @@ def sign_out(user=""):
     session.pop("email", None)
     return render_template('pages-login.html', user=user)
 
+def create_graph():
+    data = []
+    f=open("/home/matsy007/Downloads/Mesh/BLE-Mesh-Project/Mesh_demo.json","r")
+    data=json.load(f)
+
+    N = len(data)
+
+    Edges=[]
+    for i in range(N):
+        for j in range(N):
+            Edges.append([i, j])
+
+    G=ig.Graph(Edges, directed=False)
+
+    group = []
+    labels = []
+    for item in data:
+        group.append(int(item["Group_ID"]))
+        labels.append(item["Name"])
+
+    layt=G.layout('kk', dim=3)
+
+    Xn=[layt[k][0] for k in range(N)]# x-coordinates of nodes
+    Yn=[layt[k][1] for k in range(N)]# y-coordinates
+    Zn=[layt[k][2] for k in range(N)]# z-coordinates
+    Xe=[]
+    Ye=[]
+    Ze=[]
+    for e in Edges:
+        Xe+=[layt[e[0]][0],layt[e[1]][0], None]# x-coordinates of edge ends
+        Ye+=[layt[e[0]][1],layt[e[1]][1], None]
+        Ze+=[layt[e[0]][2],layt[e[1]][2], None]
+
+    trace1=go.Scatter3d(x=Xe, y=Ye, z=Ze, mode='lines', line=dict(color='rgb(125,125,125)', width=1), hoverinfo='none')
+    trace2=go.Scatter3d(x=Xn, y=Yn, z=Zn, mode='markers', name='Mesh Nodes', marker=dict(symbol='circle', 
+            size=6, color=group, colorscale='Viridis', 
+            line=dict(color='rgb(50,50,50)', width=0.5)), 
+            text=labels, hoverinfo='text')
+    axis=dict(showbackground=False, showline=False, zeroline=False, showgrid=False, showticklabels=False, title='' )
+
+    layout = go.Layout(
+            title="",
+            width=1000,
+            height=1000,
+            showlegend=False,
+            scene=dict(
+                xaxis=dict(axis),
+                yaxis=dict(axis),
+                zaxis=dict(axis),
+            ),
+        margin=dict(
+            t=100
+        ),
+        hovermode='closest',
+        annotations=[
+            dict(
+            showarrow=False,
+                text="",
+                xref='paper',
+                yref='paper',
+                x=0,
+                y=0.1,
+                xanchor='left',
+                yanchor='bottom',
+                font=dict(
+                size=14
+                )
+                )
+            ],    )
+
+    data=[trace1, trace2]
+    fig=go.Figure(data=data, layout=layout)
+
+
+    js_str = py.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    js_str = js_str.strip("<div>")
+    js_str = js_str.strip("</div>")
+    return js_str
+
 @app.route('/home_page')
 def home_page(user=""):
-   return render_template('index.html', user=user)
+    js_string = create_graph()
+    print(js_string)
+    return render_template('index.html', user=user, js=js_string)
 
 @app.route('/pages_faq')
 def pages_faq():
@@ -619,4 +706,4 @@ if __name__ == '__main__':
     #    start_new_session=True
     #)
     
-    app.run(host="0.0.0.0", debug = False)
+    app.run(host="0.0.0.0", debug = True)
