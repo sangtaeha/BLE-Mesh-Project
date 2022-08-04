@@ -27,6 +27,16 @@ def getJobs():
         cmds_search = list(db.commands.find({"_id":job["_id"]}))
         cmd = cmds_search[0]
 
+        # update recent info
+        recent_act = {}
+        recent_act["time"] = time_now
+        recent_act["text"] = ""
+        if cmd["cmd_val"] == "1":
+            recent_act["text"] = "Turned on LED 1 for "+cmd['chip_id']+" "+cmd['group_id']               
+        else:
+            recent_act["text"] = "Turned off LED 1 for "+cmd['chip_id']+" "+cmd['group_id'] 
+        db.recent_info.insert_one(recent_act)
+
         # turn the entire group on or off
         if cmd['chip_id'] is "" :
             chips_search = list(db.chip_info.find({"Group_ID":cmd["group_id"]}))
@@ -40,6 +50,7 @@ def getJobs():
             else:
                 newValue = {'$set':{'Status':"OFF"}}
             db.chip_info.update_many(filter, newValue, upsert=False)
+            
         else:
             chips_search = list(db.chip_info.find({"Chip_ID":cmd["chip_id"]}))
             app_key = chips_search[0]["Group_ID"]
