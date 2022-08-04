@@ -60,7 +60,8 @@
           </a>
         </li><!-- End Search Icon-->
 
-                
+        
+        
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -148,7 +149,7 @@
       </li><!-- End Components Nav -->
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ url_for('bluetooth_devices') }}">
+        <a class="nav-link" href="{{ url_for('bluetooth_devices') }}">
           <i class="bi bi-journal-text"></i>
           <span>Add Devices</span>
         </a>
@@ -230,34 +231,22 @@
 
   </aside><!-- End Sidebar-->
 
-  <main id="main" class="main">
+  <main>
+    <div class="container">
+      <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+        <h2>Under Construction .... Beta Version available.</h2>
+        <h2>Check with Site admin for more info.</h2>
+        <a class="btn" href="{{ url_for('home_page') }}">Back to home</a>
+        <img src="{{ url_for('static', filename = 'img/not-found.svg') }}" class="img-fluid py-5" alt="Page Not Found">
+        <div class="credits">
+          Designed by <a href="http://netstech.org/">Internet Systems Lab</a>
+        </div>
+      </section>
 
-    <div class="pagetitle">
-      <h1>Add Devices</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{{url_for('home_page')}}">Home</a></li>
-          <li class="breadcrumb-item">Devices</li>
-          <li class="breadcrumb-item active">Add Devices</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-    <section class="section">
-      <img src="{{ url_for('static', filename = 'img/bluetooth.png') }}" alt="">
-    </section>
-
+    </div>
   </main><!-- End #main -->
 
-  
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>BLE Mesh Project</span></strong>. All Rights Reserved
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="{{ url_for('home_page') }}" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="{{ url_for('static', filename = 'vendor/apexcharts/apexcharts.min.js') }}"></script>
@@ -268,7 +257,6 @@
   <script src="{{ url_for('static', filename = 'vendor/simple-datatables/simple-datatables.js') }}"></script>
   <script src="{{ url_for('static', filename = 'vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ url_for('static', filename = 'vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ url_for('static', filename = 'js/plotly-latest.min.js') }}"></script> 
 
   <!-- Template Main JS File -->
   <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>

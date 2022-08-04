@@ -140,7 +140,6 @@ def create_graph():
     data=[trace1, trace2]
     fig=go.Figure(data=data, layout=layout)
 
-
     js_str = py.offline.plot(fig, include_plotlyjs=False, output_type='div')
     js_str = js_str.strip("<div>")
     js_str = js_str.strip("</div>")
@@ -153,7 +152,7 @@ def home_page(user=""):
         print(js_string)
         recent_info=[]
         time_now = datetime.now().strftime(fmt)
-        jobs = list(db.recent_info.find({"time":{'$lt':time_now}}).sort('time', -1))
+        jobs = list(db.recent_info.find({"time":{'$lt':time_now}}).limit(10).sort('time', -1))
         for job in jobs:
             print(job["text"])
             recent_activity = {}

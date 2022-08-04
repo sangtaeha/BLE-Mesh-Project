@@ -127,7 +127,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ url_for('home_page') }}">
+        <a class="nav-link collapsed" href="{{ url_for('home_page') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -199,7 +199,7 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{url_for('pages_register')}}">
+        <a class="nav-link " href="{{url_for('pages_register')}}">
           <i class="bi bi-card-list"></i>
           <span>Register</span>
         </a>
@@ -237,7 +237,6 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{url_for('home_page')}}">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
           <li class="breadcrumb-item active">Contact</li>
         </ol>
       </nav>

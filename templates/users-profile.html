@@ -128,7 +128,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="{{ url_for('home_page') }}">
+        <a class="nav-link collapsed" href="{{ url_for('home_page') }}">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -179,7 +179,7 @@
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{url_for('users_profile')}}">
+        <a class="nav-link " href="{{url_for('users_profile')}}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
@@ -234,11 +234,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Dashboard</h1>
+      <h1>Profile View</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{url_for('home_page')}}">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active">Profile</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->

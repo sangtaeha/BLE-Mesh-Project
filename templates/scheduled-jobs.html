@@ -28,7 +28,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ url_for('static', filename = 'css/style.css') }}" rel="stylesheet">
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -237,7 +237,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{url_for('home_page')}}">Home</a></li>
-          <li class="breadcrumb-item">Jobs</li>
+          <li class="breadcrumb-item"><a href="{{url_for('commands')}}">Jobs</a></li>
           <li class="breadcrumb-item active">Schedule Jobs</li>
         </ol>
       </nav>
@@ -297,8 +297,8 @@
                   </div><!-- End Default Tabs -->
                 </div>
                 <div class="col-12">
-                  <button class="btn btn-success rounded-pill" name="todocmd" value="on" type="submit" >Turn ON</button>
-                  <button class="btn btn-danger rounded-pill" name="todocmd" value="off" type="submit" >Turn OFF</button>
+                  <button class="btn btn-success rounded-pill" id="clickme" name="todocmd" value="on" type="submit" onclick='swal({icon: "success",});'>Turn ON</button>
+                  <button class="btn btn-danger rounded-pill" id="clickme" name="todocmd" value="off" type="submit" onclick='swal({icon: "success",});'>Turn OFF</button>
                 </div>
               </form>
               <!-- End Browser Default Validation -->
@@ -392,10 +392,14 @@
   
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>BLE Mesh Project</span></strong>. All Rights Reserved
-    </div>
-  </footer><!-- End Footer -->
+    <div class="copyright">  <script>
+      $(document).ready ( function () {
+          $("#clickme").click(function () {
+            
+          });
+      });
+    </script>
+  
 
   <a href="{{ url_for('home_page') }}" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -425,7 +429,6 @@
     setTimeout(clockTick, 100);
     setInterval(clockTick, 60000);
   </script>
-
 </body>
 
 </html>
