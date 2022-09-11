@@ -220,7 +220,7 @@ $ gc.set(False) #light should turn off
 <!-- DEMO -->
 ## Demo
 
-To see the detailed Provisioning demo, please see PrivisionCMD.txt
+To see the detailed Provisioning demo, please see ProvisioningCMD.txt
 
 <!-- ROADMAP -->
 ## Roadmap
