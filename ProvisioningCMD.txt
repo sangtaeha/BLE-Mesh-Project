@@ -1,0 +1,161 @@
+ssh pi@128.138.224.251
+ssh pi@raspberrypi.local
+chupist
+
+sudo dmesg | tail
+sudo dmesg | grep -C 3 SEGGER
+
+cd ~/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/
+python3 interactive_pyaci.py -d /dev/ttyACM0
+
+db = MeshDB("database/example_database.json")
+db.provisioners
+p = Provisioner(device, db)
+
+cc = ConfigurationClient(db)
+cc.force_segmented = True
+device.model_add(cc)
+
+#Next will put nodes 1 to 5 into group 0
+#node 0
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #00")
+cc.publish_set(0,8)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[0].unicast_address, 0, mt.ModelId(0x1000))
+cc.model_subscription_add(db.nodes[0].unicast_address, 0xc001, mt.ModelId(0x1000))
+
+#node 1
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #01")
+cc.publish_set(1,9)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[1].unicast_address, 0, mt.ModelId(0x1000))
+cc.model_subscription_add(db.nodes[1].unicast_address, 0xc001, mt.ModelId(0x1000))
+
+
+#node 2
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #02")
+cc.publish_set(2,10)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[2].unicast_address, 0, mt.ModelId(0x1000))
+cc.model_subscription_add(db.nodes[2].unicast_address, 0xc001, mt.ModelId(0x1000))
+
+#node 3
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #03")
+cc.publish_set(3,11)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[3].unicast_address, 0, mt.ModelId(0x1000))
+cc.model_subscription_add(db.nodes[3].unicast_address, 0xc001, mt.ModelId(0x1000))
+
+#node 4
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #04")
+cc.publish_set(4,12)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[4].unicast_address, 0, mt.ModelId(0x1000))
+cc.model_subscription_add(db.nodes[4].unicast_address, 0xc001, mt.ModelId(0x1000))
+
+
+#Next will put nodes 5 to 9 into group 1
+#Following code will need to change the parameters in it
+
+#node 5~9
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #05") #Change to 5~9
+cc.publish_set(5,13) #Change to(6,14) (7,15) (8,16) (9,17)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[5].unicast_address, 1, mt.ModelId(0x1000)) #Change to[6],[7],[8],[9], and keep the second parameter '1'
+cc.model_subscription_add(db.nodes[5].unicast_address, 0xc001, mt.ModelId(0x1000))#Change to[6],[7],[8],[9]
+
+#Next will put nodes 11 to 15 into group 2
+#Following code will need to change the parameters in it
+
+#node 10~14
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #10")#Change to #10~14
+cc.publish_set(10,18) #Change to (11,19) (12,20) (13,21) (14,22)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[10].unicast_address, 2, mt.ModelId(0x1000)) #Change to [11],[12],[13],[14], and keep the second parameter '1'
+cc.model_subscription_add(db.nodes[10].unicast_address, 0xc001, mt.ModelId(0x1000)) #Change to [11],[12],[13],[14]
+
+#Next will put nodes 15 to 24 into group 3
+#Following code will need to change the parameters in it
+
+#node 15~24
+p.scan_start()
+p.scan_stop()
+p.provision(name="Light bulb #15")#Change to #15~24
+cc.publish_set(14,22) #Change to (15,23) (16,24) ... (24,32)
+cc.composition_data_get()
+cc.appkey_add(0)
+cc.appkey_add(1)
+cc.appkey_add(2)
+cc.appkey_add(3)
+cc.appkey_add(4)
+cc.model_app_bind(db.nodes[14].unicast_address, 3, mt.ModelId(0x1000)) #Change to [15],[16],[..],[24], and keep the second parameter '1'
+cc.model_subscription_add(db.nodes[114].unicast_address, 0xc001, mt.ModelId(0x1000)) #Change to [15],[16],[..],[24]
+
+device.send(cmd.AddrSubscriptionAdd(0xc001)) #Get a group index 25
+
+
+gc = GenericOnOffClient()
+gc.force_segmented = True
+device.model_add(gc)
+
+gc.publish_set(0,25) #Send to group 0 all node
+gc.publish_set(0,1) #Send to group 0 node 1
+gc.publish_set(1,1) #Send to group 1 node 1
+gc.publish_set(1,25) #Send to group 1 all node
+gc.publish_set(0,25) #Send to group 0 all node
+
+gc.set(True) #Turn on
+gc.set(False) #Turn off
+gc.get() #Get status
+
+
+
