@@ -223,11 +223,33 @@ $ gc.set(True) #light should turn on
 $ gc.set(False) #light should turn off
 ```
 
+## WebServer Setup
+
+Now that the Mesh network is already pre-configured, we will set up the webserver now. <br>
+Take a clone of the <em>BLE-Mesh-Project</em> Repo and switch to the <em>Demo</em> branch. <br>
+Now go to the <em>BLE-Mesh-Project</em> folder and install the requirements required for running the webserver using:
+
+```sh
+pip install -r requirements.txt
+```
+
+If there are any errors, please resolve them before you move to the next step. <br>
+Now go ahead and run the webserver using the following commands in two different terminals
+```sh
+python3 Main.py
+python3 Job_executor.py 
+```
+
+Now you can access the web server at 
+```sh
+http://127.0.0.1:5000/ or
+http://<public_ip>:5000/
+```
+
 <!-- DEMO -->
 ## Demo
 
 To see the detailed Provisioning demo, please see ProvisioningCMD.txt
-
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -236,16 +258,12 @@ xxxx
 
 <p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
 xxxx
 
 <p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
-
-
 
 <!-- LICENSE -->
 ## License
@@ -254,8 +272,6 @@ xxxx
 
 <p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
 ## Contact
 
@@ -263,11 +279,8 @@ xxxx
 
 <p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
 
 * [Provisioning and running Nordic's BLE Mesh](https://devzone.nordicsemi.com/guides/short-range-guides/b/mesh-networks/posts/provisioning-and-running-nordic-s-ble-mesh-with-python-application-controller-interface-pyaci)
 * [Interactive PyACI script](https://infocenter.nordicsemi.com/topic/com.nordic.infocenter.meshsdk.v5.0.0/md_scripts_interactive_pyaci_README.html)
