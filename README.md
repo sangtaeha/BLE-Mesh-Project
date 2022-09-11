@@ -1,10 +1,6 @@
-<a name="BLE Mesh Project Readme"></a>
+<a visibility=false href="#readme-top"></a>
 
 <!-- Original Readme Credit: https://github.com/othneildrew/Best-README-Template/blob/master/README.md -->
-
-
-
-
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -14,7 +10,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-
+## BLE-Mesh Project
 
 <!-- TABLE OF CONTENTS -->
 
@@ -43,42 +39,49 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
-* texttexttexttexttexttexttextttexttexttexttexttexttexttexttexttexttexttexttext
+In this project, we wish to use an interactive web server to send commands to the mouse and record the neural response.
+For the scope of this demo, we shall be using a BLE device instead of a mouse.
+We shall be hosting our webserver on Raspberry Pi and use Bluetooth for communication purposes.
 
-* textxttexttexttext
+![Introduction Diagram](https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Intro.PNG)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 ### Architecture
 
-texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext
+Our Software Architecture diagram looks as follows. For detailed information on the architecture of our project, please refer to Docs.
 
-* text
-* text
-* text
+![Software Architecture Diagram](https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Architecture.png)
 
+We have five software components as can be seen in the architecture diagram. They are:
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+* <em>UI/UX Interface</em>: Contains all the UI Views that are part of web interface.
+* <em>Web Server</em>: Contains API endpoints for handling various functionalities floated in the above UI views.
+* <em>Database System</em>: Stores all the user, log, command and scheduled jobs information.
+* <em>Bluetooth Controller</em>: Acts as a bridge between the Mesh network and web server.
+* <em>Bluetooth Mesh Network</em>: The main network containing chipsets (BLE devices) and provisioner.
 
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
+The first three components are hosted on Raspberry Pi. <br>
+Raspberry Pi and nRF52840 provisioner together form the Bluetooth controller component.  <br>
+All the nRF5284 chipsets together with the provisioner forms the Bluetooth mesh network. <br> 
 
 <!-- GETTING STARTED -->
 ## Installation
 
-Pleas using the SDK that we provide, and it should be two SDK folder next to each other.
+For us to start using the webserver, we need to first configure the Mesh Network that can be done using the steps mentioned below.
 
-Those two SDK folder should be like the following
+Please use the SDK that we provide, and it should be two SDK folders next to each other.
+
+The directory structure for those two SDK folders should be as follows
 
 ```sh
-nRF5_SDK_17.0.2
-nrfXSDKforMeshv500src
+nRF5_SDK_XX.X.X_XXXXXXX
+nrfXSDKforMeshvXXXsrc
 ```
 
 And here is the link to the SDK download page:
@@ -88,15 +91,14 @@ And here is the link to the SDK download page:
 
 *https://www.nordicsemi.com/Products/Development-software/nRF5-SDK/Download?lang=en#infotabs*
 
-By using the Segger Embedded Stuio to open the project file and to flash the correct SDK into the board
+Use the Segger Embedded Studio to open the project file and flash the correct SDK into the board.
 
 ### Prerequisites
 
-1. For the server-end(the lights) it should use the source code under *<nrfXSDKforMeshvXXXsrc>/examples/light_switch/*, and then choosing the correct versions for your board, then flash by using the Segger Embedded Stuio
+1. For server-end(BLE device), we should use the source code under *nrfXSDKforMeshvXXXsrc/examples/light_switch/*, and then choose the correct version for the BLE device (we used nRF52840DK), and please flash using the Segger Embedded Studio. <br> 
+For provisoning-end(provisioner), we should use the source code under *nrfXSDKforMeshvXXXsrc/examples/serial/*, and then choose the correct versions for your board, and then flash using the Segger Embedded Studio.
 
-And for the pervisoning-end(the controller) is should use the surce code under *<nrfXSDKforMeshvXXXsrc>/examples/serial/*, and then choosing the correct versions for your board, then flash by using the Segger 
-
-2. Then install the PyACI package, go in the *scripts/interactive_pyaci* directory and install the requirements
+2. Then install the PyACI package, go in the *nrfXSDKforMeshvXXXsrc/scripts/interactive_pyaci* directory and install the requirements
 ```sh
 $ cd scripts/interactive_pyaci
 $ pip install -r requirements.txt
@@ -129,6 +131,8 @@ This is an example of one groups, if you need more groups, you can expand it sev
       "name": "lights"
     },
 ```
+For the demo purposes, we provisioned the Mesh network using the nRF52840 chipset attached to the Raspberry Pi. <br>
+However, you can also provision the network beforehand using operating system of your own and connect the same provisioner to Raspberry Pi(hosting web server) and use the same example_database.json.
 
 4.  Loading the database which has the information of all the nodes
 
@@ -147,7 +151,8 @@ $ cc = ConfigurationClient(db)
 $ device.model_add(cc)
 ```
 
-6. Scaning for new nodes, (press botton 4 on the boards will reset all the pervisioning), notes that provisions can only add one node at the time
+6. Scaning for new nodes, (pressing botton 4 on the boards will reset all the provisioning) <br>
+<em>note: We can provision only one node at a time.</em>
 ```sh
 $ p.scan_start()
 # Wait for logs return
@@ -161,7 +166,7 @@ $ p.scan_stop()
 1. Provisioning nodes
  ```sh
 $ p.provision(name="AnyName")
-# Wait for logs return
+# <AnyName> will be the name of this node once provisioned. Wait for the logs to return
 # Plese remember the {'devkey_handle': X} and {'address_handle': X}> we were using this in the next steps. 
 
 $ cc.publish_set(x, x) 
@@ -194,15 +199,16 @@ $ device.send(cmd.AddrSubscriptionAdd(0xc001)) # Creates a address_handle for al
 
 # Wait for logs return and take notes of the {'address_handle': X}, that will be the address_handle for the entire grops(We will use this to control different groups)
 ```
+Please refer to following references for more information. 
+1. [Interactive PyACI Script](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.meshsdk.v4.1.0%2Fmd_scripts_interactive_pyaci_README.html)
+2. [Provisioning and running Nordic's BLE Mesh](https://devzone.nordicsemi.com/guides/short-range-guides/b/mesh-networks/posts/provisioning-and-running-nordic-s-ble-mesh-with-python-application-controller-interface-pyaci)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-After pervisioning, this is a simple test under the PyACI environment.
+After provisioning, this is a simple test under the PyACI environment.
 
 1. Adding GenericOnOffClient()
 ```sh
@@ -227,7 +233,7 @@ To see the detailed Provisioning demo, please see ProvisioningCMD.txt
 
 xxxx
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 
 
@@ -236,7 +242,7 @@ xxxx
 
 xxxx
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 
 
@@ -245,7 +251,7 @@ xxxx
 
 xxxx
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 
 
@@ -254,7 +260,7 @@ xxxx
 
 xxxx
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 
 
@@ -266,7 +272,7 @@ xxxx
 * [Interactive PyACI script](https://infocenter.nordicsemi.com/topic/com.nordic.infocenter.meshsdk.v5.0.0/md_scripts_interactive_pyaci_README.html)
 * [Serial interface library](https://infocenter.nordicsemi.com/topic/com.nordic.infocenter.meshsdk.v5.0.0/md_doc_user_guide_modules_serial.html)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 
 <!-- More info pleace take a look at those page-->
