@@ -64,11 +64,11 @@ We have five software components as can be seen in the architecture diagram. The
 * <em>Bluetooth Controller</em>: Acts as a bridge between the Mesh network and web server.
 * <em>Bluetooth Mesh Network</em>: The main network containing chipsets (BLE devices) and provisioner.
 
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+* The first three components are hosted on Raspberry Pi. <br>
+* Raspberry Pi and nRF52840 provisioner together form the Bluetooth controller component.  <br>
+* All the nRF5284 chipsets together with the provisioner form the Bluetooth mesh network. <br> 
 
-The first three components are hosted on Raspberry Pi. <br>
-Raspberry Pi and nRF52840 provisioner together form the Bluetooth controller component.  <br>
-All the nRF5284 chipsets together with the provisioner forms the Bluetooth mesh network. <br> 
+<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Installation
@@ -227,6 +227,7 @@ $ gc.set(False) #light should turn off
 ## Demo
 
 To see the detailed Provisioning demo, please see ProvisioningCMD.txt
+
 
 <!-- ROADMAP -->
 ## Roadmap
