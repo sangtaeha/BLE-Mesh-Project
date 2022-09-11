@@ -35,6 +35,7 @@
     </li>
     <li><a href="#provisioning">Provisioning</a></li>
     <li><a href="#usage">Usage</a></li>
+    <li><a href="#demo">Demo</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -76,9 +77,16 @@ Pleas using the SDK that we provide, and it should be two SDK folder next to eac
 Those two SDK folder should be like the following
 
 ```sh
-nRF5_SDK_XX.X.X_XXXXXXX
-nrfXSDKforMeshvXXXsrc
+nRF5_SDK_17.0.2
+nrfXSDKforMeshv500src
 ```
+
+And here is the link to the SDK download page:
+
+*https://www.nordicsemi.com/Products/Development-software/nRF5-SDK-for-Mesh/Download?lang=en#infotabs*
+
+
+*https://www.nordicsemi.com/Products/Development-software/nRF5-SDK/Download?lang=en#infotabs*
 
 By using the Segger Embedded Stuio to open the project file and to flash the correct SDK into the board
 
@@ -209,7 +217,10 @@ $ gc.set(True) #light should turn on
 $ gc.set(False) #light should turn off
 ```
 
+<!-- DEMO -->
+## Demo
 
+To see the detailed Provisioning demo, please see PrivisionCMD.txt
 
 <!-- ROADMAP -->
 ## Roadmap
