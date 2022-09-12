@@ -305,7 +305,7 @@ def pages_login():
                 return render_template('pages-login.html', message=message)
         return render_template('pages-login.html')
     except:
-        return render_template('error.html')  
+        return render_template('error.html', message="No mail in your session")  
 
 @app.route('/pages_error_404', methods=['post','get'])
 def pages_error_404():
@@ -619,10 +619,6 @@ def scheduled_jobs():
                         else:
                             recent_act["text"] = "Turned off LED 1 for "+chip_id+" "+group_id
                         db.recent_info.insert_one(recent_act)
-                    
-                    # update the time
-                    if(interval < 60):
-                        break
                     new_time = (datetime.strptime(time_to_execute, fmt)+timedelta(seconds=int(interval))).strftime(fmt)
             
         # filling recent activity: jobs done so far section
@@ -730,7 +726,7 @@ def command(cmd_id):
         jobs = db.queue_jobs.find_one({"cmd_id":cmd_id})
         return render_template('edit-command.html', user=user, commands=commands, jobs=jobs)
     except:
-        return render_template('error.html')  
+        return render_template('error.html',message="Please re check the input")  
 
 # display only commands that are yet to be executed
 # allow modifying the commands
@@ -767,7 +763,7 @@ def commands():
 
         return render_template('commands.html', user=user, commands=commands)
     except:
-        return render_template('error.html')  
+        return render_template('error.html', message="Command error please re-schedule")  
 
 @app.route('/tables_general', methods=['post','get'])
 def tables_general():
