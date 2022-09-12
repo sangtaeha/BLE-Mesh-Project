@@ -29,6 +29,7 @@
   <!-- Template Main CSS File -->
   <link href="{{ url_for('static', filename = 'css/style.css') }}" rel="stylesheet">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="{{ url_for('static', filename = 'js/jquery.min.js') }}"></script>
 </head>
 
 <body>
@@ -419,7 +420,7 @@
   <script src="{{ url_for('static', filename = 'js/main.js') }}"></script>
   <script>
     function clockTick()    {
-      var date = new Date().toString("yyyy-MM-ddTH:mm");
+      var date = new Date().toString("yyyy-MM-ddTHH:mm");
       console.log(date);
       const elems = document.getElementsByClassName("time");
       for(var elem of elems){
