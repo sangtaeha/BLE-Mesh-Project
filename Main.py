@@ -26,8 +26,8 @@ records = db.register
 
 # for formatting time delta
 fmt = '%Y-%m-%dT%H:%M'
-home_dir = '/home/matsy007/Downloads/Mesh/BLE-Mesh-Project/Commands/'
-# home_dir = '/home/pi/BLE/BLE-Mesh-Project/Commands/'
+#home_dir = '/home/matsy007/Downloads/Mesh/BLE-Mesh-Project/Commands/'
+home_dir = '/home/pi/BLE/BLE-Mesh-Project/Commands/'
 home_database_json = '/home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/database/example_database.json'
 ##############################################################################
 def delta_to_string(duration):
@@ -177,27 +177,46 @@ def home_page(user=""):
 
 @app.route('/pages_faq', methods=['post','get'])
 def pages_faq():
-    if "email" in session and session["email"]!="":
-        user_found = records.find_one({"email": session["email"]})
-        user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
-        print(user)
-    return render_template('pages-faq.html', user=user)
+    print(session)
+    try:
+        if "email" in session and session["email"]!="":
+            user_found = records.find_one({"email": session["email"]})
+            user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
+            print(user)
+            return render_template('pages-faq.html', user=user)
+        else:
+            return redirect(url_for('pages_login'))
+    except:
+        return redirect(url_for('pages_login'))
 
 @app.route('/users_profile', methods=['post','get'])
 def users_profile():
-    if "email" in session and session["email"]!="":
-        user_found = records.find_one({"email": session["email"]})
-        user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
-        print(user)
-    return render_template('users-profile.html', user=user)
+    print(session)
+    try:
+        if "email" in session and session["email"]!="":
+            user_found = records.find_one({"email": session["email"]})
+            user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
+            print(user)
+            return render_template('users-profile.html', user=user)
+        else:
+            return redirect(url_for('pages_login'))
+    except:
+        return redirect(url_for('pages_login'))
+            
 
 @app.route('/pages_contact', methods=['post','get'])
 def pages_contact():
-    if "email" in session and session["email"]!="":
-        user_found = records.find_one({"email": session["email"]})
-        user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
-        print(user)
-    return render_template('pages-contact.html', user=user)
+    print(session)
+    try:
+        if "email" in session and session["email"]!="":
+            user_found = records.find_one({"email": session["email"]})
+            user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
+            print(user)
+            return render_template('pages-contact.html', user=user)
+        else:
+            return redirect(url_for('pages_login'))
+    except:
+        return redirect(url_for('pages_login'))
 
 @app.route('/pages_register', methods=['post','get'])
 def pages_register():
@@ -229,7 +248,7 @@ def pages_register():
                 return render_template('pages-register.html', message=message)
             
             if password1 != password2:
-                message = 'Passwords should match!'
+                message = 'Passwords should match! Try again'
                 print(message)
                 return render_template('pages-register.html', message=message)
             else:
@@ -301,11 +320,11 @@ def pages_login():
                     print("Wrong password")
                     return render_template('pages-login.html', message=message)
             else:
-                message = 'Email not found'
+                message = 'User found'
                 return render_template('pages-login.html', message=message)
         return render_template('pages-login.html')
     except:
-        return render_template('error.html', message="No mail in your session")  
+        return render_template('error.html', message="Error found, please check and login again")  
 
 @app.route('/pages_error_404', methods=['post','get'])
 def pages_error_404():
@@ -359,7 +378,7 @@ def run_group_change(chip_id, old_group_id, new_group_id):
     print("Changing the group from: {0} to {1} and file is: {2} ".format(old_group_id, new_group_id, file_name))
 
     #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
-    os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM4 < "+file_name)
+    os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name)
 
     # TO DO: delete the command*.txt files too
     #subprocess.run(["rm","-rf",file_name])
@@ -372,6 +391,8 @@ def component(chip_id):
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
+    else:
+        return redirect(url_for('pages_login'))
 
     try:
         if request.method == "POST":
@@ -422,7 +443,9 @@ def components():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    
+    else:
+        return redirect(url_for('pages_login'))
+        
     try:
         chips = db.chip_info.find()
         chip_info = []
@@ -439,7 +462,9 @@ def group_view():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    
+    else:
+        return redirect(url_for('pages_login'))
+        
     try:
         groups = db.group_info.find()
         chips = db.chip_info.find()
@@ -462,6 +487,9 @@ def bluetooth_devices():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
+    else:
+        return redirect(url_for('pages_login'))
+        
     return render_template('bluetooth-devices.html', user=user)
 
 # Code for running the job immediately
@@ -517,7 +545,7 @@ def run_command(cmd_id):
         # TO DO: run the interactive python shell script system command
         print("Running the system command: "+file_name)
         #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
-        os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM4 < "+file_name)
+        os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name)
 
         # TO DO: delete the command*.txt files too
         #subprocess.run(["rm","-rf",file_name])
@@ -532,7 +560,9 @@ def scheduled_jobs():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    
+    else:
+        return redirect(url_for('pages_login'))
+        
     # update the db and call the same 
     try:
         time_curr = datetime.now().strftime(fmt)    # string object
@@ -680,7 +710,9 @@ def logs():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    
+    else:
+        return redirect(url_for('pages_login'))
+        
     try:
         logs = db.logs.find()
         return render_template('logs.html', user=user, logs = logs)
@@ -695,6 +727,9 @@ def command(cmd_id):
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
+    else:
+        return redirect(url_for('pages_login'))
+        
     try:
         if request.method == "POST":
             updated_cmd = {}
@@ -738,7 +773,9 @@ def commands():
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-    
+    else:
+        return redirect(url_for('pages_login'))
+        
     try:
         queued_jobs = db.queue_jobs.aggregate([
             { "$sort": {"execution_time": 1}},

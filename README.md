@@ -1,4 +1,4 @@
-<a visibility=false href="#readme-top"></a>
+<a visibility=false href="#BLE-Mesh-Project"></a>
 
 <!-- Original Readme Credit: https://github.com/othneildrew/Best-README-Template/blob/master/README.md -->
 
@@ -10,7 +10,8 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-## BLE-Mesh Project
+
+## BLE Mesh Project
 
 <!-- TABLE OF CONTENTS -->
 
@@ -32,7 +33,7 @@
     <li><a href="#provisioning">Provisioning</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#demo">Demo</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#assumptions-and-special-notes">Assumptions and Special Notes</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -42,19 +43,26 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-In this project, we wish to use an interactive web server to send commands to the mouse and record the neural response.
+In this project, we wish to use an interactive web server to send commands to the mouse and record the neural responses.
 For the scope of this demo, we shall be using a BLE device instead of a mouse.
 We shall be hosting our webserver on Raspberry Pi and use Bluetooth for communication purposes.
 
-![Introduction Diagram](https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Intro.PNG)
 
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+<figure align="middle">
+    <img src="https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Intro.PNG">
+    <figcaption>Introduction Diagram</figcaption>
+</figure>
+
+<p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
 
 ### Architecture
 
 Our Software Architecture diagram looks as follows. For detailed information on the architecture of our project, please refer to Docs.
 
-![Software Architecture Diagram](https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Architecture.png)
+<figure align="middle">
+    <img src="https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Architecture.png">
+    <figcaption>Software Architecture Diagram</figcaption>
+</figure>
 
 We have five software components as can be seen in the architecture diagram. They are:
 
@@ -62,18 +70,19 @@ We have five software components as can be seen in the architecture diagram. The
 * <em>Web Server</em>: Contains API endpoints for handling various functionalities floated in the above UI views.
 * <em>Database System</em>: Stores all the user, log, command and scheduled jobs information.
 * <em>Bluetooth Controller</em>: Acts as a bridge between the Mesh network and web server.
-* <em>Bluetooth Mesh Network</em>: The main network containing chipsets (BLE devices) and provisioner.
+* <em>Bluetooth Mesh Network</em>: The main network containing chipsets (BLE devices) and provisioner. 
 
+In our project,
 * The first three components are hosted on Raspberry Pi. <br>
 * Raspberry Pi and nRF52840 provisioner together form the Bluetooth controller component.  <br>
 * All the nRF5284 chipsets together with the provisioner form the Bluetooth mesh network. <br> 
 
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+<p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Installation
 
-For us to start using the webserver, we need to first configure the Mesh Network that can be done using the steps mentioned below.
+For the user to start using the webserver, he needs to first configure the Mesh Network that can be done using the steps mentioned below.
 
 Please use the SDK that we provide, and it should be two SDK folders next to each other.
 
@@ -84,19 +93,18 @@ nRF5_SDK_17.0.2_XXXXXXX
 nrfXSDKforMeshv500src
 ```
 
-And here is the link to the SDK download page:
+And here are the links to the SDK download page:
 
-*https://www.nordicsemi.com/Products/Development-software/nRF5-SDK-for-Mesh/Download?lang=en#infotabs*
+[nrfXSDKforMeshv500src](https://www.nordicsemi.com/Products/Development-software/nRF5-SDK-for-Mesh/Download?lang=en#infotabs)
 
-
-*https://www.nordicsemi.com/Products/Development-software/nRF5-SDK/Download?lang=en#infotabs*
+[nRF5_SDK_17.0.2_XXXXXXX](https://www.nordicsemi.com/Products/Development-software/nRF5-SDK/Download?lang=en#infotabs)
 
 Use the Segger Embedded Studio to open the project file and flash the correct SDK into the board.
 
 ### Prerequisites
 
-1. For server-end(BLE device), we should use the source code under *nrfXSDKforMeshvXXXsrc/examples/light_switch/*, and then choose the correct version for the BLE device (we used nRF52840DK), and please flash using the Segger Embedded Studio. <br> 
-For provisoning-end(provisioner), we should use the source code under *nrfXSDKforMeshvXXXsrc/examples/serial/*, and then choose the correct versions for your board, and then flash using the Segger Embedded Studio.
+1. For server-end(BLE device), user should use the source code under *nrfXSDKforMeshvXXXsrc/examples/light_switch/*, and then choose the correct version for the BLE device (we used nRF52840DK), and please flash using the Segger Embedded Studio. <br> 
+For provisoning-end(provisioner), user should use the source code under *nrfXSDKforMeshvXXXsrc/examples/serial/*, and then choose the correct versions for your board, and then flash using the Segger Embedded Studio.
 
 2. Then install the PyACI package, go in the *nrfXSDKforMeshvXXXsrc/scripts/interactive_pyaci* directory and install the requirements
 ```sh
@@ -199,11 +207,14 @@ $ device.send(cmd.AddrSubscriptionAdd(0xc001)) # Creates a address_handle for al
 
 # Wait for logs return and take notes of the {'address_handle': X}, that will be the address_handle for the entire grops(We will use this to control different groups)
 ```
+
+Using the above information, we need to populate the Mesh_demo.json file in the format shown at [Mesh_demo.json](https://github.com/matsy/BLE-Mesh-Project/blob/Demo/Mesh_demo.json)
+
 Please refer to following references for more information. 
 1. [Interactive PyACI Script](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.meshsdk.v4.1.0%2Fmd_scripts_interactive_pyaci_README.html)
 2. [Provisioning and running Nordic's BLE Mesh](https://devzone.nordicsemi.com/guides/short-range-guides/b/mesh-networks/posts/provisioning-and-running-nordic-s-ble-mesh-with-python-application-controller-interface-pyaci)
 
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+<p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -225,7 +236,7 @@ $ gc.set(False) #light should turn off
 
 ## WebServer Setup
 
-Now that the Mesh network is already pre-configured, we will set up the webserver now. <br>
+Now that the Mesh network is already configured, we will set up the webserver now. <br>
 Take a clone of the <em>BLE-Mesh-Project</em> Repo and switch to the <em>Demo</em> branch using following commands. <br>
 ```sh
 git clone https://github.com/matsy/BLE-Mesh-Project.git
@@ -234,8 +245,6 @@ git fetch origin Demo
 git checkout --track origin/Demo
 git branch
 ```
-
-
 
 Now go to the <em>BLE-Mesh-Project</em> folder and install the requirements required for running the webserver using:
 
@@ -249,6 +258,7 @@ Now go ahead and run the webserver using the following commands in two different
 python3 Main.py
 python3 Job_executor.py 
 ```
+<em> Note: In the scripts Main.py and Job_executor.py, please search for "/dev/ttyACM0" and replace it with the serial port on which the provisioner is connected. Make sure correct serial port is given here if you have more than one provisioners.</em>
 
 Now you can access the web server at 
 ```sh
@@ -256,38 +266,47 @@ http://127.0.0.1:5000/home_page or
 http://<public_ip>:5000/home_page
 ```
 
+If you wish to make your web server public, we can use ngrok and use it anywhere
+```sh
+ngrok http 5000
+```
+
+The URL returned after executing above command shall be the public URL.
+
 <!-- DEMO -->
 ## Demo
 
-To see the detailed Provisioning demo, please see ProvisioningCMD.txt
+To see the detailed Provisioning demo i.e pre-configuring our Mesh network, please see ProvisioningCMD.txt
 
-<!-- ROADMAP -->
-## Roadmap
+You can also find recorded videos showcasing various functionalities [here](https://drive.google.com/drive/folders/1mj9k4nUD2uz2zvglwnFj10nvoBgDb3C5?usp=sharing). 
 
-xxxx
+<!-- Assumptions -->
+## Assumptions and Special Notes
 
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+* For this project, we assumed that before using the webserver, the Mesh Network is already pre-configured.
+* We also assume that the web server will be used on a single Mesh Network i.e. multiple people may use this web server to configure commands but all these commands shall be executed on the same Mesh Network. In effect, it means commands scheduled by a particular person can be seen by everyone.
+* Each of the nRF52840 chips are reachable to at least one development kit in the Mesh Network.
+* There exists atleast one path from every chip to the provisioner, not neccesarily an optimal one at any point of time.
+* The interval used while scheduling the jobs/commands shall be atleast 60 seconds or 1 minute.
+* For periodic scheduling, the end time is assumed to be more than the start time and the difference is atleast a minute.
+* We also assume that the user doesn't schedule a command in the past and would schedule a command to either run immediately or at some point in the future.
+* Sanity checks have been taken care of at as many places as possible but I couldn't cover every scenario and would have missed some. Please let me know if I missed any.
+* We assume that the user shall input Group and Chip IDs as per the Mesh network and not give values of nodes that are not present in the Mesh Network. 
+* <b> Please use <em>Error 404</em> page carefully. Once you have pre-configured the network clicking on this view shall load the Mesh_demo.json values into our MongoDb. If you click multiple times, it will duplicate the chip and group entries. So, please use this view carefully.</b>
+* Since our webserver checks for jobs (that need to be executed), every 30 seconds, while using periodic scheduling, please try to schedule the consecutive jobs some time apart. The webserver was able to run the commands as expected even if they are pretty close but we observed that the reliability of these commands being sent over network was low when scheduled immediately (maybe because of the serial connection used between Raspberry Pi and Provisioner).
+* We also observed though the web server executes every job correctly, but the provisioner failed to send the commands properly to the chip sometimes. In such scenarios, we advice the user to re-schedule the job and reset the status of chips in mongodb.
 
-<!-- CONTRIBUTING -->
+<p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
+
 ## Contributing
 
-xxxx
-
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
-
-<!-- LICENSE -->
-## License
-
-xxxx
-
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+I would like to express my special appreciation and thanks to Professor Dr. Sangtae Ha, for having been a tremendous mentor for me. I would like to thank him for his invaluable feedback and constant support throughout this project. 
 
 <!-- CONTACT -->
 ## Contact
+For any more information, please refer to the Docs or please feel free to contact sai.mekala@colorado.edu or sangtae.ha@colorado.edu
 
-xxxx
-
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+<p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
@@ -296,7 +315,7 @@ xxxx
 * [Interactive PyACI script](https://infocenter.nordicsemi.com/topic/com.nordic.infocenter.meshsdk.v5.0.0/md_scripts_interactive_pyaci_README.html)
 * [Serial interface library](https://infocenter.nordicsemi.com/topic/com.nordic.infocenter.meshsdk.v5.0.0/md_doc_user_guide_modules_serial.html)
 
-<p align="right">(<a href="#BLE-Mesh Project">back to top</a>)</p>
+<p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
 
 
 <!-- More info pleace take a look at those page-->
