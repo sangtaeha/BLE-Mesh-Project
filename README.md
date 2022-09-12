@@ -80,8 +80,8 @@ Please use the SDK that we provide, and it should be two SDK folders next to eac
 The directory structure for those two SDK folders should be as follows
 
 ```sh
-nRF5_SDK_XX.X.X_XXXXXXX
-nrfXSDKforMeshvXXXsrc
+nRF5_SDK_17.0.2_XXXXXXX
+nrfXSDKforMeshv500src
 ```
 
 And here is the link to the SDK download page:
