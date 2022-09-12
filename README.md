@@ -242,8 +242,8 @@ python3 Job_executor.py
 
 Now you can access the web server at 
 ```sh
-http://127.0.0.1:5000/ or
-http://<public_ip>:5000/
+http://127.0.0.1:5000/home_page or
+http://<public_ip>:5000/home_page
 ```
 
 <!-- DEMO -->

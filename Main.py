@@ -29,9 +29,7 @@ fmt = '%Y-%m-%dT%H:%M'
 home_dir = '/home/matsy007/Downloads/Mesh/BLE-Mesh-Project/Commands/'
 # home_dir = '/home/pi/BLE/BLE-Mesh-Project/Commands/'
 home_database_json = '/home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/database/example_database.json'
-
 ##############################################################################
-
 def delta_to_string(duration):
     days, seconds = duration.days, duration.seconds
     weeks = max(days // 7, 0)
@@ -61,11 +59,19 @@ def delta_to_string(duration):
     else:
         return "", ""
 
-@app.route('/sign_out')
+@app.route('/sign_out', methods=['post','get'])
 def sign_out(user=""):
+    print(session)
     session["email"]=""
-    session.pop("email", None)
-    return render_template('pages-login.html', user=user)
+    message=''
+    print("Called sign out")
+    try:
+        if request.method == "POST":
+            print("Received post message")
+            return redirect(url_for(''))
+        return redirect(url_for('pages_login'))
+    except:
+        return render_template('error.html')
 
 def create_graph():
     data = []
@@ -139,31 +145,37 @@ def create_graph():
 
     data=[trace1, trace2]
     fig=go.Figure(data=data, layout=layout)
-
     js_str = py.offline.plot(fig, include_plotlyjs=False, output_type='div')
     js_str = js_str.strip("<div>")
     js_str = js_str.strip("</div>")
     return js_str
 
-@app.route('/home_page')
+@app.route('/home_page', methods=['post','get'])
 def home_page(user=""):
+    print("called home page")
+    print(session)
     try:
-        js_string = create_graph()
-        print(js_string)
-        recent_info=[]
-        time_now = datetime.now().strftime(fmt)
-        jobs = list(db.recent_info.find({"time":{'$lt':time_now}}).limit(10).sort('time', -1))
-        for job in jobs:
-            print(job["text"])
-            recent_activity = {}
-            recent_activity["time"] = delta_to_string(datetime.now() - datetime.strptime(job["time"], fmt))
-            recent_activity["text"] = job["text"]
-            recent_info.append(recent_activity)
-        return render_template('index.html', user=user, js=js_string, recents=recent_info)
+        if "email" in session and session["email"]!="":
+            user_found = records.find_one({"email": session["email"]})
+            user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
+            js_string = create_graph()
+            print(js_string)
+            recent_info=[]
+            time_now = datetime.now().strftime(fmt)
+            jobs = list(db.recent_info.find({"time":{'$lt':time_now}}).limit(10).sort('time', -1))
+            for job in jobs:
+                print(job["text"])
+                recent_activity = {}
+                recent_activity["time"] = delta_to_string(datetime.now() - datetime.strptime(job["time"], fmt))
+                recent_activity["text"] = job["text"]
+                recent_info.append(recent_activity)
+            return render_template('index.html', user=user, js=js_string, recents=recent_info)
+        else:
+            return render_template('pages-login.html')  
     except:
         return render_template('error.html')  
 
-@app.route('/pages_faq')
+@app.route('/pages_faq', methods=['post','get'])
 def pages_faq():
     if "email" in session and session["email"]!="":
         user_found = records.find_one({"email": session["email"]})
@@ -171,7 +183,7 @@ def pages_faq():
         print(user)
     return render_template('pages-faq.html', user=user)
 
-@app.route('/users_profile')
+@app.route('/users_profile', methods=['post','get'])
 def users_profile():
     if "email" in session and session["email"]!="":
         user_found = records.find_one({"email": session["email"]})
@@ -179,7 +191,7 @@ def users_profile():
         print(user)
     return render_template('users-profile.html', user=user)
 
-@app.route('/pages_contact')
+@app.route('/pages_contact', methods=['post','get'])
 def pages_contact():
     if "email" in session and session["email"]!="":
         user_found = records.find_one({"email": session["email"]})
@@ -235,35 +247,58 @@ def pages_register():
         return render_template('error.html')  
 
 @app.route('/', methods=['post','get'])
+@app.route('/pages_login', methods=['post','get'])
 def pages_login():
     message=''
+    print("Called pages_login")
     print(session)
     if "email" in session and session["email"]!="":
+        js_string = create_graph()
+        print(js_string)
+        recent_info=[]
+        time_now = datetime.now().strftime(fmt)
+        jobs = list(db.recent_info.find({"time":{'$lt':time_now}}).limit(10).sort('time', -1))
+        for job in jobs:
+            print(job["text"])
+            recent_activity = {}
+            recent_activity["time"] = delta_to_string(datetime.now() - datetime.strptime(job["time"], fmt))
+            recent_activity["text"] = job["text"]
+            recent_info.append(recent_activity)
         user_found = records.find_one({"email": session["email"]})
         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
         print(user)
-        return render_template('index.html', user=user)
+        return render_template('index.html', user=user, js=js_string, recents=recent_info)
     try:
         if request.method == "POST":
             user = request.form.get("username")
-            password = request.form.get("password")
-        
+            password = request.form.get("password")        
             user_found = records.find_one({"name": user})
-
             if user_found:
                 passwordcheck = user_found['password']            
                 if bcrypt.checkpw(password.encode('utf-8'), passwordcheck):
+                    print("Password matched")
                     session["email"] = user_found["email"]
                     user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
-                    print(user)
-                    return render_template('index.html', user=user)
+                    js_string = create_graph()
+                    recent_info=[]
+                    time_now = datetime.now().strftime(fmt)
+                    jobs = list(db.recent_info.find({"time":{'$lt':time_now}}).limit(10).sort('time', -1))
+                    for job in jobs:
+                        print(job["text"])
+                        recent_activity = {}
+                        recent_activity["time"] = delta_to_string(datetime.now() - datetime.strptime(job["time"], fmt))
+                        recent_activity["text"] = job["text"]
+                        recent_info.append(recent_activity)
+                    return render_template('index.html', user=user, js=js_string, recents=recent_info)
                 else:
                     if "email" in session:
                         user_found = records.find_one({"email": session["email"]})
                         user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
-                        print(user)
+                        print("else case")
+                        session["email"] = user_found["email"]
                         return render_template('index.html', user=user)
                     message = 'Wrong password'
+                    print("Wrong password")
                     return render_template('pages-login.html', message=message)
             else:
                 message = 'Email not found'
@@ -272,7 +307,7 @@ def pages_login():
     except:
         return render_template('error.html')  
 
-@app.route('/pages_error_404')
+@app.route('/pages_error_404', methods=['post','get'])
 def pages_error_404():
     try:
         f = open("./Mesh_demo.json")
@@ -295,7 +330,7 @@ def pages_error_404():
     except:
         return render_template('error.html')  
 
-@app.route('/pages_blank')
+@app.route('/pages_blank', methods=['post','get'])
 def pages_blank():
    return render_template('pages-blank.html')
 
@@ -379,7 +414,7 @@ def component(chip_id):
     except:
         return render_template('error.html')  
 
-@app.route('/components')
+@app.route('/components', methods=['post','get'])
 def components():
     message=''
     print(session)
@@ -395,9 +430,9 @@ def components():
             chip_info.append(chip)
         return render_template('components.html', user=user, chips=chip_info)
     except:
-        return render_template('error.html')  
+        return render_template('error.html', message="This Functionality is disabled")  
    
-@app.route('/group_view')
+@app.route('/group_view', methods=['post','get'])
 def group_view():
     print(session)
     if "email" in session and session["email"]!="":
@@ -420,7 +455,7 @@ def group_view():
     except:
         return render_template('error.html')  
 
-@app.route('/bluetooth_devices')
+@app.route('/bluetooth_devices', methods=['post','get'])
 def bluetooth_devices():
     print(session)
     if "email" in session and session["email"]!="":
@@ -638,9 +673,9 @@ def scheduled_jobs():
             db.logs.insert_one(lg)
         return render_template('scheduled-jobs.html', user=user, executed=user_execute, queuejobs=user_queue)
     except:
-        return render_template('error.html')        
+        return render_template('error.html', message="This functionality is disabled")        
     
-@app.route('/logs')
+@app.route('/logs', methods=['post','get'])
 def logs():
     print(session)
     if "email" in session and session["email"]!="":
@@ -732,35 +767,35 @@ def commands():
     except:
         return render_template('error.html')  
 
-@app.route('/tables_general')
+@app.route('/tables_general', methods=['post','get'])
 def tables_general():
    return render_template('tables-general.html')
 
-@app.route('/tables_data')
+@app.route('/tables_data', methods=['post','get'])
 def tables_data():
    return render_template('tables-data.htmll')
 
-@app.route('/charts_chartjs')
+@app.route('/charts_chartjs', methods=['post','get'])
 def charts_chartjs():
    return render_template('charts-chartjs.html')
 
-@app.route('/charts_apexcharts')
+@app.route('/charts_apexcharts', methods=['post','get'])
 def charts_apexcharts():
    return render_template('charts-apexcharts.html')
 
-@app.route('/charts_echarts')
+@app.route('/charts_echarts', methods=['post','get'])
 def charts_echarts():
    return render_template('charts-echarts.html')
 
-@app.route('/icons_bootstrap')#print("####")
+@app.route('/icons_bootstrap', methods=['post','get'])
 def icons_bootstrap():
    return render_template('icons-bootstrap.html')
 
-@app.route('/icons_remix')
+@app.route('/icons_remix', methods=['post','get'])
 def icons_remix():
    return render_template('icons-remix.html')
 
-@app.route('/icons_boxicons')
+@app.route('/icons_boxicons', methods=['post','get'])
 def icons_boxicons():
    return render_template('icons-boxicons.html')
 
