@@ -621,6 +621,8 @@ def scheduled_jobs():
                         db.recent_info.insert_one(recent_act)
                     
                     # update the time
+                    if(interval < 60):
+                        break
                     new_time = (datetime.strptime(time_to_execute, fmt)+timedelta(seconds=int(interval))).strftime(fmt)
             
         # filling recent activity: jobs done so far section
