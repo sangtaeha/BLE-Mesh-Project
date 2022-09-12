@@ -171,9 +171,9 @@ def home_page(user=""):
                 recent_info.append(recent_activity)
             return render_template('index.html', user=user, js=js_string, recents=recent_info)
         else:
-            return render_template('pages-login.html')  
+            return redirect(url_for('pages_login')) 
     except:
-        return render_template('error.html')  
+        return render_template('error.html', message="Try again")  
 
 @app.route('/pages_faq', methods=['post','get'])
 def pages_faq():

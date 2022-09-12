@@ -31,7 +31,11 @@
 </head>
 
 <body>
-
+  {% if message  %}
+  <div class="alert alert-secondary" role="alert">
+      <h2>{{ message }}</h2>
+  </div>
+  {% endif %}
   <main>
     <div class="container">
 

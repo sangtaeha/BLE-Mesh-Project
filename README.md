@@ -226,7 +226,17 @@ $ gc.set(False) #light should turn off
 ## WebServer Setup
 
 Now that the Mesh network is already pre-configured, we will set up the webserver now. <br>
-Take a clone of the <em>BLE-Mesh-Project</em> Repo and switch to the <em>Demo</em> branch. <br>
+Take a clone of the <em>BLE-Mesh-Project</em> Repo and switch to the <em>Demo</em> branch using following commands. <br>
+```sh
+git clone https://github.com/matsy/BLE-Mesh-Project.git
+cd BLE-Mesh-Project/
+git fetch origin Demo
+git checkout --track origin/Demo
+git branch
+```
+
+
+
 Now go to the <em>BLE-Mesh-Project</em> folder and install the requirements required for running the webserver using:
 
 ```sh
