@@ -48,10 +48,8 @@ For the scope of this demo, we shall be using a BLE device instead of a mouse.
 We shall be hosting our webserver on Raspberry Pi and use Bluetooth for communication purposes.
 
 
-<figure align="middle">
-    <img src="https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Intro.PNG">
-    <figcaption>Introduction Diagram</figcaption>
-</figure>
+![Introduction Diagram](https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Intro.PNG)
+
 
 <p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
 
@@ -59,10 +57,8 @@ We shall be hosting our webserver on Raspberry Pi and use Bluetooth for communic
 
 Our Software Architecture diagram looks as follows. For detailed information on the architecture of our project, please refer to Docs.
 
-<figure align="middle">
-    <img src="https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Architecture.png">
-    <figcaption>Software Architecture Diagram</figcaption>
-</figure>
+
+![Software Architecture Diagram](https://github.com/matsy/BLE-Mesh-Project/blob/Demo/assets/img/Architecture.png)
 
 We have five software components as can be seen in the architecture diagram. They are:
 
