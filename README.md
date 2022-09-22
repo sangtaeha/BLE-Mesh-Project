@@ -138,7 +138,9 @@ This is an example of one groups, if you need more groups, you can expand it sev
 For the demo purposes, we provisioned the Mesh network using the nRF52840 chipset attached to the Raspberry Pi. <br>
 However, you can also provision the network beforehand using operating system of your own and connect the same provisioner to Raspberry Pi(hosting web server) and use the same example_database.json.
 
-4.  Loading the database which has the information of all the nodes
+4.  Loading the database which has the information of all the nodes, steps 4&5 needs to execute every time when the interactive_pyaci shell starts.
+
+(For the following steps, need to do within the interactive_pyaci shell, for all the following code that starts with "$" means it needs to run within the interactive_pyaci shell)
 
 
 ```sh
@@ -149,13 +151,15 @@ $ p = Provisioner(device, db)
 # Wait for logs return
 ```
 
-5. Adding Configuration Client
+5. Adding Configuration Client (Execute every time when the interactive_pyaci shell starts)
 ```sh
 $ cc = ConfigurationClient(db)
 $ device.model_add(cc)
 ```
 
-6. Scaning for new nodes, (pressing botton 4 on the boards will reset all the provisioning) <br>
+6. Scaning for new nodes, (pressing botton 4 on the boards will reset all the provisioning, and this is require for each time a new node is added) <br>
+
+
 <em>note: We can provision only one node at a time.</em>
 ```sh
 $ p.scan_start()
@@ -166,6 +170,7 @@ $ p.scan_stop()
 
 
 ## Provisioning
+**The following steps are done within the interactive_pyaci shell, and you need at least done one time on prerequisites steps 4 and 5. And Before provisioning every node, please complete the scan node on step 6 "Scanning for new nodes". For example, for adding every node, we need to repeat the steps of "Scanning for new nodes" then steps 1,2 on the following steps. The third step will only be performed after all nodes have been added, and only need to performed once.**
 
 1. Provisioning nodes
  ```sh
@@ -197,6 +202,9 @@ $ cc.model_app_bind(db.nodes[0].unicast_address, 0, mt.ModelId(0x1000))
 $ cc.model_subscription_add(db.nodes[0].unicast_address, 0xc001, mt.ModelId(0x1000)) # Add to subscription to group 0xC001
 # Wait for logs return
 ```
+
+**The third step will only be performed after all nodes have been added, and only need to performed once.**
+
 3. After adding all the nodes and and grouping them into different groups.
 ```sh
 $ device.send(cmd.AddrSubscriptionAdd(0xc001)) # Creates a address_handle for all the set, this would be the entireGrops_index, we will use this to control different groups.
@@ -217,15 +225,17 @@ Please refer to following references for more information.
 
 After provisioning, this is a simple test under the PyACI environment.
 
+**The step 1 only needs to be performed once after each restart of the Shell, and must be performed before "publish_set"**
 1. Adding GenericOnOffClient()
 ```sh
 $ gc = GenericOnOffClient()
+$ device.model_add(gc)
 ```
 2. Turn on or off by single nodes or groups
 ```sh
-$ device.model_add(gc)
-$ gc.publish_set(0, 0) #publish_set(groups_index, node_index) turn on individual nodes
-# #publish_set(groups_index, entireGrops_index) will turn on by groups
+$ gc.publish_set(0, 0) 
+#publish_set(groups_index, node_index) #turn on individual nodes
+#publish_set(groups_index, entireGrops_index) #will turn on by groups
 $ gc.set(True) #light should turn on
 $ gc.set(False) #light should turn off
 ```
@@ -321,8 +331,3 @@ For any more information, please refer to the Docs or please feel free to contac
 <!-- https://devzone.nordicsemi.com/guides/short-range-guides/b/mesh-networks/posts/provisioning-and-running-nordic-s-ble-mesh-with-python-application-controller-interface-pyaci -->
 
 <!-- https://infocenter.nordicsemi.com/index.jsp?topic=%2Fcom.nordic.infocenter.meshsdk.v5.0.0%2Fmd_examples_provisioner_README.html&anchor=provisioner_example_assignment -->
-
-
-
-
-
