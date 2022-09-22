@@ -8,6 +8,9 @@ sudo dmesg | grep -C 3 SEGGER
 cd ~/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/
 python3 interactive_pyaci.py -d /dev/ttyACM0
 
+
+##All the next steps will be done in the interactive_pyaci shell##
+
 db = MeshDB("database/example_database.json")
 db.provisioners
 p = Provisioner(device, db)
@@ -15,6 +18,9 @@ p = Provisioner(device, db)
 cc = ConfigurationClient(db)
 cc.force_segmented = True
 device.model_add(cc)
+
+##Lines 14 to 20 need to be execute one time and one time only, when interactive_pyaci shell restarts##
+
 
 #Next will put nodes 1 to 5 into group 0
 #node 0
@@ -142,10 +148,11 @@ cc.model_subscription_add(db.nodes[114].unicast_address, 0xc001, mt.ModelId(0x10
 
 device.send(cmd.AddrSubscriptionAdd(0xc001)) #Get a group index 25
 
-
 gc = GenericOnOffClient()
 gc.force_segmented = True
 device.model_add(gc)
+
+##Lines 153 to 155 need to be execute one time and one time only, when interactive_pyaci shell restarts##
 
 gc.publish_set(0,25) #Send to group 0 all node
 gc.publish_set(0,1) #Send to group 0 node 1
