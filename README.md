@@ -97,6 +97,10 @@ And here are the links to the SDK download page:
 
 Use the Segger Embedded Studio to open the project file and flash the correct SDK into the board.
 
+#### install Segger Embedded Studio
+Download [Segger Embedded Studio](https://www.segger.com/downloads/embedded-studio/)
+
+
 ### Prerequisites
 
 1. For server-end(BLE device), user should use the source code under *nrfXSDKforMeshvXXXsrc/examples/light_switch/*, and then choose the correct version for the BLE device (we used nRF52840DK), and please flash using the Segger Embedded Studio. <br> 
