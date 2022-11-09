@@ -99,6 +99,10 @@ And here are the links to the SDK download page:
 
 Use the Segger Embedded Studio to open the project file and flash the correct SDK into the board.
 
+The File will be looks like this, two folder need to be side by side:
+
+![Chose The File](https://github.com/matsy/BLE-Mesh-Project/blob/README_proposal_young/IMG/Chose%20The%20file.png)
+
 #### install Segger Embedded Studio for ARM
 1. Download [Segger Embedded Studio](https://www.segger.com/downloads/embedded-studio/) for ARM
 2. Install as a super user
@@ -109,6 +113,8 @@ sudo ./install_segger_embedded_studio
 ```
 3. follows instructions in `INSTALL.txt` to run the studio
 4. more steps to take!
+
+
    
 ### provisioning instructions
 you may find instructions [here](https://devzone.nordicsemi.com/guides/short-range-guides/b/mesh-networks/posts/provisioning-and-running-nordic-s-ble-mesh-with-python-application-controller-interface-pyaci)
@@ -118,7 +124,12 @@ you may find instructions [here](https://devzone.nordicsemi.com/guides/short-ran
 2. Open the source code in SES
    - File -> Open Solution
      - select `nrf5sdkformeshv500src/examples/serial/serial_nrf52840_xxAA_s140_7_2_0.emProject`
+     
+![InkedChoseTheRightFile](https://github.com/matsy/BLE-Mesh-Project/blob/README_proposal_young/IMG/InkedChoseTheRightFile.jpg)
+     
 3. Target -> download `filename`
+
+![download file](https://github.com/matsy/BLE-Mesh-Project/blob/README_proposal_young/IMG/DownLoadTarget.jpg)
 
 #### Upload the code to the BLE peripheral devices
 1. Start a Segger Embedded Studio (SES) unless it is already running
@@ -126,6 +137,12 @@ you may find instructions [here](https://devzone.nordicsemi.com/guides/short-ran
    - File -> Open Solution
      - select `nrf5sdkformeshv500src/examples/light_switch/server/light_switch_client_nrf52840_xxAA_s140_7_2_0.emProject`
 3. Targe -> download `filename`
+
+And We need to change the Persistent_storage to 1
+
+![ProjectOptions fil](https://github.com/matsy/BLE-Mesh-Project/blob/README_proposal_young/IMG/ProjectOptions.jpg)
+![ChagePeristenStore](https://github.com/matsy/BLE-Mesh-Project/blob/README_proposal_young/IMG/ChagePeristenStore.jpg)
+
 
 ### Prerequisites
 1. For server-end(BLE device), user should use the source code under `nrfXSDKforMeshvXXXsrc/examples/light_switch/*`, and then choose the correct version for the BLE device (we used nRF52840DK), and please flash using the Segger Embedded Studio. <br> 
