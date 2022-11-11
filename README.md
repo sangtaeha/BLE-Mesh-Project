@@ -63,14 +63,14 @@ Our Software Architecture diagram looks as follows. For detailed information on 
 We have five software components as can be seen in the architecture diagram. They are:
 
 * <em>UI/UX Interface</em>: Contains all the UI Views that are part of web interface.
-* <em>Web Server</em>: Contains API endpoints for handling various functionalities floated in the above UI views.
+* <em>Web Server</em>: Contains API endpoints for handling various functionalities floated in the above UI views and interacts with the Mesh Provisioner.
 * <em>Database System</em>: Stores all the user, log, command and scheduled jobs information.
 * <em>Bluetooth Controller</em>: Acts as a bridge between the Mesh network and web server.
 * <em>Bluetooth Mesh Network</em>: The main network containing chipsets (BLE devices) and provisioner. 
 
 In our project,
 * The first three components are hosted on Raspberry Pi. <br>
-* Raspberry Pi and nRF52840 provisioner together form the Bluetooth controller component.  <br>
+* nRF52840 provisioner together form the Bluetooth controller component.  <br>
 * All the nRF5284 chipsets together with the provisioner form the Bluetooth mesh network. <br> 
 
 <p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>
