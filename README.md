@@ -100,7 +100,7 @@ Use the Segger Embedded Studio to open the project file and flash the correct SD
 1. For server-end(BLE device), user should use the source code under *nrfXSDKforMeshvXXXsrc/examples/light_switch/*, and then choose the correct version for the BLE device (we used nRF52840DK), and please flash using the Segger Embedded Studio. <br> 
 For provisoning-end(provisioner), user should use the source code under *nrfXSDKforMeshvXXXsrc/examples/serial/*, and then choose the correct versions for your board, and then flash using the Segger Embedded Studio.
 
-2. Then install the PyACI package, go in the directory and install the requirements
+2. Then install the required package to provision the nodes, go in the directory and install the requirements
 ```sh
 $ cd scripts/interactive_pyaci
 $ pip install -r requirements.txt
@@ -111,7 +111,7 @@ $ pip install -r requirements.txt
 The Webserver is capable of configuring and provisioning the Mesh Network. <br>
 Take a clone of the <em>BLE-Mesh-Project</em> Repo and switch to the <em>Demo</em> branch using following commands. <br>
 ```sh
-git clone https://github.com/matsy/BLE-Mesh-Project.git
+git clone https://github.com/sangtaeha/BLE-Mesh-Project.git
 cd BLE-Mesh-Project/
 git fetch origin Demo
 git checkout --track origin/Demo
