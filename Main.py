@@ -14,7 +14,11 @@ import plotly as py
 import plotly.graph_objs as go
 import serial.tools.list_ports
 myports = [tuple(p) for p in list(serial.tools.list_ports.comports())]
-
+#iterate through all the ports and identify the correct port, check for Captial 'C'=> could be /dev/ttyACM0 or /dev/ttyACM1
+for i in range(len(myports)):
+    if (myports[i][0].find('C') != -1):
+        path_input = myports[i][0]
+        break
 app = Flask(__name__)
 app.secret_key = "testing"
 client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
@@ -379,7 +383,7 @@ def run_group_change(chip_id, old_group_id, new_group_id):
     print("Changing the group from: {0} to {1} and file is: {2} ".format(old_group_id, new_group_id, file_name))
 
     #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
-    cmd_to_run = "python3 " + os.getcwd() + "/scripts_to_execute_commands/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name
+    cmd_to_run = "python3 " + os.getcwd() + "/scripts_to_execute_commands/interactive_pyaci/interactive_pyaci.py -d " + path_input + "<"+file_name
     os.system(cmd_to_run)
 
     # TO DO: delete the command*.txt files too
@@ -489,11 +493,6 @@ def bluetooth_devices():
         # get the number of nodes input
         decimal_input = request.form['decimal_input']
         
-        #iterate through all the ports and identify the correct port, check for Captial 'C'=> could be /dev/ttyACM0 or /dev/ttyACM1
-        for i in range(len(myports)):
-            if (myports[i][0].find('C') != -1):
-                path_input = myports[i][0]
-                break
         #path_input = request.form['path_input']
         print("Device Connected is - ", path_input)
         command = ['python3', '/home/pi/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py', '-d', path_input, '-n', decimal_input]
@@ -571,7 +570,7 @@ def run_command(cmd_id):
         # TO DO: run the interactive python shell script system command
         print("Running the system command: "+file_name)
         #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
-        cmd_to_run = "python3 " + os.getcwd()+ "/scripts_to_execute_commands/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name
+        cmd_to_run = "python3 " + os.getcwd()+ "/scripts_to_execute_commands/interactive_pyaci/interactive_pyaci.py -d" + path_input + "<" + file_name
         os.system(cmd_to_run)
 
         # TO DO: delete the command*.txt files too
