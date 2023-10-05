@@ -1,0 +1,10 @@
+2023-02-28 16:04:29,541 - DEBUG - COM3: TX: 6169b58acef7919777c3709d2e01074ebb4b870cb42687fab0f8c5d28332c40ead177a626ad27e0b4b3a21b7dfa9cfcc28e59bbd2cb961e4748a19c3984181fed8aa37da8929f837b4e8b9a8a069df873a4f46829fd225b9cd0199f49df0bbeefc41
+2023-02-28 16:04:31,547 - INFO - COM3: cmd KeypairSet, timeout waiting for event
+2023-02-28 16:04:31,547 - DEBUG - COM3: TX: 059f01000100
+2023-02-28 16:04:33,564 - INFO - COM3: cmd AddrLocalUnicastSet, timeout waiting for event
+2023-02-28 16:04:33,564 - DEBUG - COM3: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 16:04:35,570 - INFO - COM3: cmd SubnetAdd, timeout waiting for event
+2023-02-28 16:04:35,572 - DEBUG - COM3: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 16:04:37,579 - INFO - COM3: cmd AppkeyAdd, timeout waiting for event
+2023-02-28 16:04:37,580 - DEBUG - COM3: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 16:04:39,587 - INFO - COM3: cmd AppkeyAdd, timeout waiting for event

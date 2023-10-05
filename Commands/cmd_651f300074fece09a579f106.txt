@@ -1,0 +1,6 @@
+db = MeshDB('/home/pi/BLE_Project_F_23/BLE-Mesh-Project/scripts/interactive_pyaci/database/example_database.json')
+db.nodes
+gc = GenericOnOffClient()
+device.model_add(gc)
+gc.publish_set(0, 1)
+gc.set(True)

@@ -1,0 +1,24 @@
+2023-03-22 16:02:03,866 - DEBUG - COM7: TX: 61698f29fcc8b8123de1b8e6f3ebcd3e2c7cf8a059493eda7ca6d4c703441d883ed254d3a9c7f28f2d79ca75cffb9aae4a779e93eb35fa9935079b6fc24beb6d710a40c26e3b1da8cb8536ef912b67117ecb93bddafc52d835617e1a6c750d84e730
+2023-03-22 16:02:03,877 - DEBUG - COM7: RX: 03846900
+2023-03-22 16:02:03,877 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-03-22 16:02:03,878 - DEBUG - COM7: TX: 059f01000100
+2023-03-22 16:02:03,878 - INFO - COM7: Success
+2023-03-22 16:02:03,880 - DEBUG - COM7: RX: 03849f8e
+2023-03-22 16:02:03,880 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-03-22 16:02:03,880 - DEBUG - COM7: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-03-22 16:02:03,880 - ERROR - COM7: None: ERROR_REJECTED
+2023-03-22 16:02:03,884 - DEBUG - COM7: RX: 03849281
+2023-03-22 16:02:03,884 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-03-22 16:02:03,884 - DEBUG - COM7: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-03-22 16:02:03,884 - ERROR - COM7: SubnetAdd: ERROR_INTERNAL
+2023-03-22 16:02:03,888 - DEBUG - COM7: RX: 03849781
+2023-03-22 16:02:03,888 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-03-22 16:02:03,888 - DEBUG - COM7: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-03-22 16:02:03,888 - ERROR - COM7: AppkeyAdd: ERROR_INTERNAL
+2023-03-22 16:02:03,892 - DEBUG - COM7: RX: 03849781
+2023-03-22 16:02:03,892 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-03-22 16:02:03,892 - ERROR - COM7: AppkeyAdd: ERROR_INTERNAL
+2023-03-22 16:19:39,706 - DEBUG - COM7: RX: 08d900000000001e00
+2023-03-22 16:19:39,707 - DEBUG - COM7: parsed_packet {event: MeshIvEntrySetNotification, data: {'iv_index': 0, 'iv_update_in_progress': 0, 'iv_update_timeout_counter': 30}}
+2023-03-22 16:19:39,707 - INFO - COM7: {event: MeshIvEntrySetNotification, data: {'iv_index': 0, 'iv_update_in_progress': 0, 'iv_update_timeout_counter': 30}}
+2023-03-22 16:21:17,867 - DEBUG - COM7: exited read event

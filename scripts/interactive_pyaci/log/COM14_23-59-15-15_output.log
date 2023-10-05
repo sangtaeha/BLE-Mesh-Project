@@ -1,0 +1,10 @@
+2023-02-28 15:15:27,500 - DEBUG - COM14: TX: 6169bccdb5dd71ddedd0738acb3f66c563e2b0b8e66551886d2e8c01baef3cf2387ca4334e7b65de1872d0039b38fdaa81aa57ea5837c3a8201905ba44b2eb1670bfd935d68a59bf0f5b53c342c9ecba3fb5d85348368863b43c5e3de0e7c2b28a57
+2023-02-28 15:15:29,504 - INFO - COM14: cmd KeypairSet, timeout waiting for event
+2023-02-28 15:15:29,505 - DEBUG - COM14: TX: 059f01000100
+2023-02-28 15:15:31,508 - INFO - COM14: cmd AddrLocalUnicastSet, timeout waiting for event
+2023-02-28 15:15:31,509 - DEBUG - COM14: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 15:15:33,513 - INFO - COM14: cmd SubnetAdd, timeout waiting for event
+2023-02-28 15:15:33,514 - DEBUG - COM14: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 15:15:35,531 - INFO - COM14: cmd AppkeyAdd, timeout waiting for event
+2023-02-28 15:15:35,531 - DEBUG - COM14: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 15:15:37,541 - INFO - COM14: cmd AppkeyAdd, timeout waiting for event

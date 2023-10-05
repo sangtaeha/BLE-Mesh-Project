@@ -1,0 +1,10 @@
+2023-03-02 19:46:26,335 - DEBUG - COM6: TX: 03a101c0
+2023-03-02 19:46:28,344 - INFO - COM6: cmd AddrSubscriptionAdd, timeout waiting for event
+2023-03-02 19:47:12,057 - DEBUG - COM6: TX: 03a101c0
+2023-03-02 19:47:14,061 - INFO - COM6: cmd AddrSubscriptionAdd, timeout waiting for event
+2023-03-02 19:47:42,197 - DEBUG - COM6.GenericOnOffClient: Sending opcode: 8202, data: 0100
+2023-03-02 19:47:42,198 - DEBUG - COM6: TX: 0fab0000010000000800000082020100
+2023-03-02 19:47:44,206 - INFO - COM6: cmd PacketSend, timeout waiting for event
+2023-03-02 19:47:53,614 - DEBUG - COM6.GenericOnOffClient: Sending opcode: 8202, data: 0101
+2023-03-02 19:47:53,614 - DEBUG - COM6: TX: 0fab0000010000000800000082020101
+2023-03-02 19:47:55,670 - INFO - COM6: cmd PacketSend, timeout waiting for event

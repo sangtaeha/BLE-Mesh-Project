@@ -12,7 +12,8 @@ import json
 import urllib3
 import plotly as py
 import plotly.graph_objs as go
-
+import serial.tools.list_ports
+myports = [tuple(p) for p in list(serial.tools.list_ports.comports())]
 
 app = Flask(__name__)
 app.secret_key = "testing"
@@ -27,8 +28,8 @@ records = db.register
 # for formatting time delta
 fmt = '%Y-%m-%dT%H:%M'
 #home_dir = '/home/matsy007/Downloads/Mesh/BLE-Mesh-Project/Commands/'
-home_dir = '/home/pi/BLE/BLE-Mesh-Project/Commands/'
-home_database_json = '/home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/database/example_database.json'
+home_dir = os.getcwd() + '/Commands/'
+home_database_json = os.getcwd()+'/scripts/interactive_pyaci/database/example_database.json'
 ##############################################################################
 def delta_to_string(duration):
     days, seconds = duration.days, duration.seconds
@@ -378,7 +379,8 @@ def run_group_change(chip_id, old_group_id, new_group_id):
     print("Changing the group from: {0} to {1} and file is: {2} ".format(old_group_id, new_group_id, file_name))
 
     #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
-    os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name)
+    cmd_to_run = "python3 " + os.getcwd() + "/scripts_to_execute_commands/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name
+    os.system(cmd_to_run)
 
     # TO DO: delete the command*.txt files too
     #subprocess.run(["rm","-rf",file_name])
@@ -483,14 +485,38 @@ def group_view():
 @app.route('/bluetooth_devices', methods=['post','get'])
 def bluetooth_devices():
     print(session)
-    if "email" in session and session["email"]!="":
-        user_found = records.find_one({"email": session["email"]})
-        user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
-        print(user)
-    else:
-        return redirect(url_for('pages_login'))
+    if request.method == 'POST':
+        # get the number of nodes input
+        decimal_input = request.form['decimal_input']
         
-    return render_template('bluetooth-devices.html', user=user)
+        #iterate through all the ports and identify the correct port, check for Captial 'C'=> could be /dev/ttyACM0 or /dev/ttyACM1
+        for i in range(len(myports)):
+            if (myports[i][0].find('C') != -1):
+                path_input = myports[i][0]
+                break
+        #path_input = request.form['path_input']
+        print("Device Connected is - ", path_input)
+        command = ['python3', '/home/pi/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py', '-d', path_input, '-n', decimal_input]
+
+        try:
+            # Execute the script with blocking call
+            subprocess.run(command, check=True)
+            print("Provisioning is successful")
+            db.chip_info.delete_many({})
+            print("Chip info cleaned")
+            return redirect(url_for('pages_login'))
+        except subprocess.CalledProcessError as e:
+            return f"Provisioning failed: {e}"
+    else:
+        if "email" in session and session["email"]!="":
+            user_found = records.find_one({"email": session["email"]})
+            user = {'name': user_found["name"], 'email': user_found["email"], 'password': user_found["password"], 'fullname': user_found["fullname"], 'country': user_found["country"], 'address':user_found["address"], 'phone':user_found["phone"] }
+            print(user)
+            return render_template('bluetooth-devices.html', user=user)
+        else:
+            return redirect(url_for('pages_login'))
+        
+
 
 # Code for running the job immediately
 def run_command(cmd_id):
@@ -545,7 +571,8 @@ def run_command(cmd_id):
         # TO DO: run the interactive python shell script system command
         print("Running the system command: "+file_name)
         #subprocess.run(["python3", "interactive_pyaci.py","-d", "COM8", "-l","3" ,"<",file_name])
-        os.system("python3 /home/pi/Mesh_demo/nrf5sdkformeshv500src/scripts/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name)
+        cmd_to_run = "python3 " + os.getcwd()+ "/scripts_to_execute_commands/interactive_pyaci/interactive_pyaci.py -d /dev/ttyACM0 < "+file_name
+        os.system(cmd_to_run)
 
         # TO DO: delete the command*.txt files too
         #subprocess.run(["rm","-rf",file_name])

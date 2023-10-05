@@ -1,0 +1,10 @@
+db = MeshDB("database/example_database.json")
+#db.nodes
+#p = Provisioner(device, db)
+
+gc = GenericOnOffClient()
+gc.force_segmented = True
+device.model_add(gc)
+gc.publish_set(3,25)
+gc.set(False)
+

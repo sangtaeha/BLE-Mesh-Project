@@ -35,7 +35,6 @@
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
-
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ url_for('home_page') }}" class="logo d-flex align-items-center">
         <img src="{{ url_for('static', filename = 'img/CU-logo.png') }}" alt="">
@@ -234,13 +233,21 @@
   <main>
     <div class="container">
       <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
-        <h2>Under Construction .... Beta Version available.</h2>
+       
+	<h2>Under Construction .... Beta Version available.</h2>
         <h2>Check with Site admin for more info.</h2>
-        <a class="btn" href="{{ url_for('home_page') }}">Back to home</a>
+        <form action="/bluetooth_devices" method="POST">
+          <label for="decimal_input">Number of Nodes:</label>
+          <input type="number" id="decimal_input" name="decimal_input" step="any" required><br><br>
+
+          <input type="submit" value="Start Provision">
+        </form>         
+	<a class="btn" href="{{ url_for('home_page') }}">Back to home</a>
         <img src="{{ url_for('static', filename = 'img/not-found.svg') }}" class="img-fluid py-5" alt="Page Not Found">
         <div class="credits">
           Designed by <a href="http://netstech.org/">Internet Systems Lab</a>
         </div>
+
       </section>
 
     </div>

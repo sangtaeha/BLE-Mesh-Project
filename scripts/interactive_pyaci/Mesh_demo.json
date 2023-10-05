@@ -1,0 +1,47 @@
+[
+    {
+        "UUID": "b4f0897eae8e43cb84ac74af2c7527ba",
+        "Chip_ID": "0x7e89f0b4",
+        "Name": "Light bulb #1",
+        "Group_ID": "0",
+        "Unicast_address_index": "0",
+        "Group_ID_handle": "25",
+        "ModelId": "1000",
+        "Subscribe": "49153",
+        "Status": "OFF",
+        "Dev_key_handle": "8",
+        "Address_handle": "0",
+        "Device_key": "2ef00c7a67f8610a984285103e405329",
+        "NetKeys": "18eed9c2a56add85049ffc3c59ad0e12"
+    },
+    {
+        "UUID": "5c624c724ffd4755b218c65b45bd8532",
+        "Chip_ID": "0x724c625c",
+        "Name": "Light bulb #2",
+        "Group_ID": "0",
+        "Unicast_address_index": "1",
+        "Group_ID_handle": "25",
+        "ModelId": "1000",
+        "Subscribe": "49153",
+        "Status": "OFF",
+        "Dev_key_handle": "9",
+        "Address_handle": "1",
+        "Device_key": "6142600850ea861ed23884a6905640b2",
+        "NetKeys": "18eed9c2a56add85049ffc3c59ad0e12"
+    },
+    {
+        "UUID": "8d31bfd38af64c48b1d2ecb571690b0a",
+        "Chip_ID": "0xd3bf318d",
+        "Name": "Light bulb #3",
+        "Group_ID": "0",
+        "Unicast_address_index": "2",
+        "Group_ID_handle": "25",
+        "ModelId": "1000",
+        "Subscribe": "49153",
+        "Status": "OFF",
+        "Dev_key_handle": "10",
+        "Address_handle": "2",
+        "Device_key": "e590da6cb9a5933378986a19f0cdcff0",
+        "NetKeys": "18eed9c2a56add85049ffc3c59ad0e12"
+    }
+]

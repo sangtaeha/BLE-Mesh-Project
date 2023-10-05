@@ -1,0 +1,11 @@
+2023-02-27 18:20:44,930 - DEBUG - COM12: TX: 616928435e7fab25e1aa4947624afce8ed2be9d2f23ecb0c54c7dbaec261d337f42d09e8f6a52db29c9de722228671813eb9eed7a771c4bde1f169df9a22f9408e25d2c75a55dd5e50d16f02cd8c7ab612bc34c1d27ae61977189ad7e8e01dbf7792
+2023-02-27 18:20:46,935 - INFO - COM12: cmd KeypairSet, timeout waiting for event
+2023-02-27 18:20:46,936 - DEBUG - COM12: TX: 059f01000100
+2023-02-27 18:20:48,951 - INFO - COM12: cmd AddrLocalUnicastSet, timeout waiting for event
+2023-02-27 18:20:48,951 - DEBUG - COM12: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-27 18:20:50,958 - INFO - COM12: cmd SubnetAdd, timeout waiting for event
+2023-02-27 18:20:50,959 - DEBUG - COM12: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-27 18:20:52,971 - INFO - COM12: cmd AppkeyAdd, timeout waiting for event
+2023-02-27 18:20:52,972 - DEBUG - COM12: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-27 18:20:54,983 - INFO - COM12: cmd AppkeyAdd, timeout waiting for event
+2023-02-27 18:33:06,894 - DEBUG - COM12: exited read event

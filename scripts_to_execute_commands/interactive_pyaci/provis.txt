@@ -1,0 +1,9 @@
+p.scan_start()
+In [28]: p.scan_stop()
+In [29]: p.provision(name="Light bulb #3")
+In [30]: cc.publish_set(10, 2)
+In [31]: cc.composition_data_get()
+In [32]: cc.appkey_add(0)
+In [33]: cc.appkey_add(1)
+In [34]: cc.model_app_bind(db.nodes[2].unicast_address, 0, mt.ModelId(0x1000)) #bind to appkey0
+In [35]: cc.model_subscription_add(db.nodes[2].unicast_address, 0xc001, mt.ModelId(0x1000)) #Add to group

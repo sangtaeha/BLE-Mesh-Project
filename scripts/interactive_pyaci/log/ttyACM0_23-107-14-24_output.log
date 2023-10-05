@@ -1,0 +1,20 @@
+2023-04-17 14:24:12,876 - DEBUG - ttyACM0: TX: 61698555351a3dab33c4d90ee3027eb857dae5b516bf1a22b580d9cb1103aae93ed70c6e4187a413151dfdd1bda95ecb9e56c25fb34ca0dc5adfbc614c5ac4da2175aec9990949c6d3c0dd4e516f748db857b685aed5360814931aaf0183b606940c
+2023-04-17 14:24:12,888 - DEBUG - ttyACM0: RX: 03846900
+2023-04-17 14:24:12,888 - DEBUG - ttyACM0: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-04-17 14:24:12,889 - INFO - ttyACM0: Success
+2023-04-17 14:24:12,889 - DEBUG - ttyACM0: TX: 059f01000100
+2023-04-17 14:24:12,892 - DEBUG - ttyACM0: RX: 03849f8e
+2023-04-17 14:24:12,892 - DEBUG - ttyACM0: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-04-17 14:24:12,893 - DEBUG - ttyACM0: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-04-17 14:24:12,892 - ERROR - ttyACM0: None: ERROR_REJECTED
+2023-04-17 14:24:12,895 - DEBUG - ttyACM0: RX: 03849281
+2023-04-17 14:24:12,896 - DEBUG - ttyACM0: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-04-17 14:24:12,896 - DEBUG - ttyACM0: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-04-17 14:24:12,896 - ERROR - ttyACM0: SubnetAdd: ERROR_INTERNAL
+2023-04-17 14:24:12,899 - DEBUG - ttyACM0: RX: 03849781
+2023-04-17 14:24:12,900 - DEBUG - ttyACM0: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-04-17 14:24:12,900 - DEBUG - ttyACM0: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-04-17 14:24:12,900 - ERROR - ttyACM0: AppkeyAdd: ERROR_INTERNAL
+2023-04-17 14:24:12,904 - DEBUG - ttyACM0: RX: 03849781
+2023-04-17 14:24:12,904 - DEBUG - ttyACM0: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-04-17 14:24:12,904 - ERROR - ttyACM0: AppkeyAdd: ERROR_INTERNAL

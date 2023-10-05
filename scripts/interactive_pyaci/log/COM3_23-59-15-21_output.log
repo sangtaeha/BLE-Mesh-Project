@@ -1,0 +1,61 @@
+2023-02-28 15:21:11,430 - DEBUG - COM3: TX: 61690e1e1e6535c2d1e735fc1e4a22a2a407486022c41fa32139c133b760bf8cd84852ac7a0140faf510ad48381d9c4d2ef87805d3c6f9e99ee9bf80b6b3dc0aaab9e6b676c4198b844b50ede8430a581b0cba6d3653147c869b14077a669757bc06
+2023-02-28 15:21:13,446 - INFO - COM3: cmd KeypairSet, timeout waiting for event
+2023-02-28 15:21:13,447 - DEBUG - COM3: TX: 059f01000100
+2023-02-28 15:21:15,462 - INFO - COM3: cmd AddrLocalUnicastSet, timeout waiting for event
+2023-02-28 15:21:15,462 - DEBUG - COM3: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 15:21:17,466 - INFO - COM3: cmd SubnetAdd, timeout waiting for event
+2023-02-28 15:21:17,466 - DEBUG - COM3: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 15:21:19,485 - INFO - COM3: cmd AppkeyAdd, timeout waiting for event
+2023-02-28 15:21:19,486 - DEBUG - COM3: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 15:21:21,498 - INFO - COM3: cmd AppkeyAdd, timeout waiting for event
+2023-02-28 15:21:33,704 - DEBUG - COM3: exited read event
+2023-02-28 15:21:38,106 - DEBUG - COM3: TX: 61698eea69ce749c78d4e000fb72292f8ac5f1df8a8b29bd45eefe8420393f789355e09c27746a3fe51cfd819e4ca700e759454f480140805e1b2666cb2889e1cfa0103328ff00e7ae1c4de75cba742e49b28164709d3491503c615f31485a91657e
+2023-02-28 15:21:38,117 - DEBUG - COM3: RX: 03846900
+2023-02-28 15:21:38,117 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-02-28 15:21:38,117 - DEBUG - COM3: TX: 059f01000100
+2023-02-28 15:21:38,117 - INFO - COM3: Success
+2023-02-28 15:21:38,120 - DEBUG - COM3: RX: 03849f8e
+2023-02-28 15:21:38,120 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-02-28 15:21:38,120 - DEBUG - COM3: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 15:21:38,120 - ERROR - COM3: None: ERROR_REJECTED
+2023-02-28 15:21:38,124 - DEBUG - COM3: RX: 03849281
+2023-02-28 15:21:38,124 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-02-28 15:21:38,124 - DEBUG - COM3: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 15:21:38,124 - ERROR - COM3: SubnetAdd: ERROR_INTERNAL
+2023-02-28 15:21:38,128 - DEBUG - COM3: RX: 03849781
+2023-02-28 15:21:38,128 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 15:21:38,129 - DEBUG - COM3: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 15:21:38,128 - ERROR - COM3: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 15:21:38,132 - DEBUG - COM3: RX: 03849781
+2023-02-28 15:21:38,132 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 15:21:38,132 - ERROR - COM3: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 15:21:42,625 - DEBUG - COM3: exited read event
+2023-02-28 15:21:52,488 - DEBUG - COM3: TX: 61699fb1c88f2995aef4ceb31a9ad78fd2f984cee0756e4e46cd08583340f5b7dc332f5d84822f5ac54d339767c7c9d4a2db6395b847cb513709998de0d9a0226bef3ab81ec322a3bbaa262dca72923a3c164d79337e168fef75e44a8e8025d64cf8
+2023-02-28 15:21:52,499 - DEBUG - COM3: RX: 03846900
+2023-02-28 15:21:52,499 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-02-28 15:21:52,499 - DEBUG - COM3: TX: 059f01000100
+2023-02-28 15:21:52,499 - INFO - COM3: Success
+2023-02-28 15:21:52,502 - DEBUG - COM3: RX: 03849f8e
+2023-02-28 15:21:52,502 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-02-28 15:21:52,502 - DEBUG - COM3: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 15:21:52,502 - ERROR - COM3: None: ERROR_REJECTED
+2023-02-28 15:21:52,506 - DEBUG - COM3: RX: 03849281
+2023-02-28 15:21:52,506 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-02-28 15:21:52,506 - DEBUG - COM3: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 15:21:52,506 - ERROR - COM3: SubnetAdd: ERROR_INTERNAL
+2023-02-28 15:21:52,510 - DEBUG - COM3: RX: 03849781
+2023-02-28 15:21:52,510 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 15:21:52,510 - DEBUG - COM3: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 15:21:52,510 - ERROR - COM3: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 15:21:52,514 - DEBUG - COM3: RX: 03849781
+2023-02-28 15:21:52,514 - DEBUG - COM3: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 15:21:52,514 - ERROR - COM3: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 15:23:24,158 - DEBUG - COM3: RX: 04810200fe
+2023-02-28 15:23:24,160 - DEBUG - COM3: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2023-02-28 15:23:24,160 - INFO - COM3: Device rebooted.
+2023-02-28 15:23:24,160 - DEBUG - COM3: RX: 08d900000000000000
+2023-02-28 15:23:24,162 - DEBUG - COM3: parsed_packet {event: MeshIvEntrySetNotification, data: {'iv_index': 0, 'iv_update_in_progress': 0, 'iv_update_timeout_counter': 0}}
+2023-02-28 15:23:24,162 - INFO - COM3: {event: MeshIvEntrySetNotification, data: {'iv_index': 0, 'iv_update_in_progress': 0, 'iv_update_timeout_counter': 0}}
+2023-02-28 15:23:24,165 - DEBUG - COM3: RX: 05da00200000
+2023-02-28 15:23:24,166 - DEBUG - COM3: parsed_packet {event: MeshSeqnumEntrySetNotification, data: {'next_block': 8192}}
+2023-02-28 15:23:24,166 - INFO - COM3: {event: MeshSeqnumEntrySetNotification, data: {'next_block': 8192}}

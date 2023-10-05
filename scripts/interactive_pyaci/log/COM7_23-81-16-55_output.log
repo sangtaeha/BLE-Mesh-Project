@@ -1,0 +1,162 @@
+2023-03-22 16:56:30,873 - DEBUG - COM7: TX: 6169d79ef2a4b0e2aaee5b9eab87c57ab3e6c51b199eb937190d60b53a476d995339e53b193d07d831cc4024a5b3f49e742ae8e1b183a29df6e937780649f531a36ad289af7ecd790247664ab30f154b495b69a591ecb4c159ebcc49dce01f8fa150
+2023-03-22 16:56:30,884 - DEBUG - COM7: RX: 03846900
+2023-03-22 16:56:30,884 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-03-22 16:56:30,884 - DEBUG - COM7: TX: 059f01000100
+2023-03-22 16:56:30,884 - INFO - COM7: Success
+2023-03-22 16:56:30,886 - DEBUG - COM7: RX: 03849f8e
+2023-03-22 16:56:30,888 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-03-22 16:56:30,888 - DEBUG - COM7: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-03-22 16:56:30,888 - ERROR - COM7: None: ERROR_REJECTED
+2023-03-22 16:56:30,892 - DEBUG - COM7: RX: 03849281
+2023-03-22 16:56:30,892 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-03-22 16:56:30,893 - DEBUG - COM7: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-03-22 16:56:30,892 - ERROR - COM7: SubnetAdd: ERROR_INTERNAL
+2023-03-22 16:56:30,897 - DEBUG - COM7: RX: 03849781
+2023-03-22 16:56:30,897 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-03-22 16:56:30,898 - DEBUG - COM7: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-03-22 16:56:30,897 - ERROR - COM7: AppkeyAdd: ERROR_INTERNAL
+2023-03-22 16:56:30,901 - DEBUG - COM7: RX: 03849781
+2023-03-22 16:56:30,901 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-03-22 16:56:30,901 - ERROR - COM7: AppkeyAdd: ERROR_INTERNAL
+2023-03-22 16:56:52,622 - DEBUG - COM7: TX: 0161
+2023-03-22 16:56:52,623 - DEBUG - COM7: RX: 03846100
+2023-03-22 16:56:52,623 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 97, 'status': 0, 'data': ''}}
+2023-03-22 16:56:52,623 - INFO - COM7: Success
+2023-03-22 16:56:53,324 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad5000131d2ecb571e9
+2023-03-22 16:56:53,324 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -43, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:56:53,325 - INFO - COM7: Received UUID 8d31bfd38af64c48b1d2ecb571690b0a with RSSI: -43 dB
+2023-03-22 16:56:54,142 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:56:54,142 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:56:54,142 - INFO - COM7: Received UUID b4f0897eae8e43cb84ac74af2c7527ba with RSSI: -29 dB
+2023-03-22 16:56:55,327 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad5000131d2ecb571e9
+2023-03-22 16:56:55,327 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -43, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:56:56,145 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:56:56,145 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:56:57,328 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac8000131d2ecb571e9
+2023-03-22 16:56:57,328 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -56, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:56:58,152 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:56:58,153 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:56:59,330 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:56:59,330 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:00,152 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:00,152 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:01,337 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad5000131d2ecb571e9
+2023-03-22 16:57:01,337 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -43, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:02,161 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:02,161 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:03,338 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac8000131d2ecb571e9
+2023-03-22 16:57:03,338 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -56, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:04,164 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:04,164 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:05,348 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:05,348 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:06,164 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:06,164 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:07,351 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:07,351 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:08,167 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:08,167 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:09,355 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac7000131d2ecb571e9
+2023-03-22 16:57:09,356 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -57, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:10,178 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:10,178 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:11,362 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:11,362 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:12,186 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:12,186 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:13,369 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:13,369 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:14,196 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:14,196 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:15,372 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac7000131d2ecb571e9
+2023-03-22 16:57:15,372 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -57, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:16,200 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:16,200 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:17,371 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:17,371 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:18,201 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae4000184ac74af2cf5
+2023-03-22 16:57:18,201 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -28, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:19,372 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:19,372 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:20,207 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:20,207 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:21,380 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac8000131d2ecb571e9
+2023-03-22 16:57:21,380 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -56, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:22,210 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:22,211 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:23,383 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:23,383 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:24,232 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:24,232 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:25,390 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:25,391 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:26,223 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:26,223 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:27,397 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac9000131d2ecb571e9
+2023-03-22 16:57:27,398 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -55, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:28,225 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:28,225 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:29,404 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:29,405 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:30,225 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:30,225 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:31,414 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:31,415 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:32,230 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:32,230 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:33,419 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac9000131d2ecb571e9
+2023-03-22 16:57:33,419 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -55, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:35,417 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:35,417 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:37,438 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad5000131d2ecb571e9
+2023-03-22 16:57:37,438 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -43, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:39,431 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac9000131d2ecb571e9
+2023-03-22 16:57:39,432 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -55, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:40,257 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:40,257 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:41,435 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:41,435 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:42,268 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:42,269 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:43,442 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:43,442 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:44,261 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:44,261 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:45,445 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0aca000131d2ecb571e9
+2023-03-22 16:57:45,445 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -54, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:46,271 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:46,271 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:47,446 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:47,446 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:48,279 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:48,279 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:49,447 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:49,447 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:50,285 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:50,286 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:51,454 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0aca000131d2ecb571e9
+2023-03-22 16:57:51,454 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -54, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:52,291 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:52,291 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:53,462 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:53,462 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:54,300 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:54,300 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:55,467 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:57:55,467 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:57:56,310 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:57:56,310 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:58,312 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:57:58,312 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:57:59,474 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad5000131d2ecb571e9
+2023-03-22 16:57:59,474 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -43, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:58:00,313 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:58:00,313 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:58:01,481 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ad6000131d2ecb571e9
+2023-03-22 16:58:01,483 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -42, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:58:02,319 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae3000184ac74af2cf5
+2023-03-22 16:58:02,319 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -29, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}
+2023-03-22 16:58:03,489 - DEBUG - COM7: RX: 1ac08d31bfd38af64c48b1d2ecb571690b0ac9000131d2ecb571e9
+2023-03-22 16:58:03,489 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': '8d31bfd38af64c48b1d2ecb571690b0a', 'rssi': -55, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '31d2ecb571e9'}}
+2023-03-22 16:58:04,319 - DEBUG - COM7: RX: 1ac0b4f0897eae8e43cb84ac74af2c7527bae0000184ac74af2cf5
+2023-03-22 16:58:04,319 - DEBUG - COM7: parsed_packet {event: ProvUnprovisionedReceived, data: {'uuid': 'b4f0897eae8e43cb84ac74af2c7527ba', 'rssi': -32, 'gatt_supported': 0, 'adv_addr_type': 1, 'adv_addr': '84ac74af2cf5'}}

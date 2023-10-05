@@ -1,0 +1,21 @@
+2023-03-24 19:02:11,546 - DEBUG - COM7: TX: 6169b5e9cc5ec9e7fcf92044b11069ddf7f44cdfe2f1e34969d8dcaec9f1def419e6c64c1a94979e47877078a1ed3e4fc1db7b33204caf89bf6c0238f0b4e3fd17d7baeb5150ffbaa6a8613bc5ad0c7670cd8fc2484e9af449362b4b93ae003bffd6
+2023-03-24 19:02:11,558 - DEBUG - COM7: RX: 03846900
+2023-03-24 19:02:11,558 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-03-24 19:02:11,559 - DEBUG - COM7: TX: 059f01000100
+2023-03-24 19:02:11,558 - INFO - COM7: Success
+2023-03-24 19:02:11,561 - DEBUG - COM7: RX: 03849f8e
+2023-03-24 19:02:11,561 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-03-24 19:02:11,561 - ERROR - COM7: None: ERROR_REJECTED
+2023-03-24 19:02:11,561 - DEBUG - COM7: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-03-24 19:02:11,588 - DEBUG - COM7: RX: 03849281
+2023-03-24 19:02:11,588 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-03-24 19:02:11,588 - ERROR - COM7: SubnetAdd: ERROR_INTERNAL
+2023-03-24 19:02:11,588 - DEBUG - COM7: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-03-24 19:02:11,594 - DEBUG - COM7: RX: 03849781
+2023-03-24 19:02:11,594 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-03-24 19:02:11,596 - DEBUG - COM7: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-03-24 19:02:11,596 - ERROR - COM7: AppkeyAdd: ERROR_INTERNAL
+2023-03-24 19:02:11,610 - DEBUG - COM7: RX: 03849781
+2023-03-24 19:02:11,610 - DEBUG - COM7: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-03-24 19:02:11,610 - ERROR - COM7: AppkeyAdd: ERROR_INTERNAL
+2023-03-24 19:03:05,578 - DEBUG - COM7: exited read event

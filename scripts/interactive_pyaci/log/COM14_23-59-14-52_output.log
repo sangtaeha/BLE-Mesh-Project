@@ -1,0 +1,110 @@
+2023-02-28 14:52:47,827 - DEBUG - COM14: TX: 616930b22565e01a2da8fdbff092c2b0607dd77258aa758d1ba54b2e4d070e3ab629ec3930df94133b8b8942ee3424249df1a05ae7f139abbbcfd0e8515c36eb43e067362e0c5dcef9f1203633d0891484be18d117d5c7aaff931090b8ff8e07e27c
+2023-02-28 14:52:47,838 - DEBUG - COM14: RX: 03846900
+2023-02-28 14:52:47,838 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-02-28 14:52:47,839 - DEBUG - COM14: TX: 059f01000100
+2023-02-28 14:52:47,838 - INFO - COM14: Success
+2023-02-28 14:52:47,840 - DEBUG - COM14: RX: 03849f8e
+2023-02-28 14:52:47,840 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-02-28 14:52:47,841 - DEBUG - COM14: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 14:52:47,841 - ERROR - COM14: None: ERROR_REJECTED
+2023-02-28 14:52:47,844 - DEBUG - COM14: RX: 03849281
+2023-02-28 14:52:47,844 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-02-28 14:52:47,844 - DEBUG - COM14: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 14:52:47,844 - ERROR - COM14: SubnetAdd: ERROR_INTERNAL
+2023-02-28 14:52:47,848 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:52:47,848 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:52:47,848 - DEBUG - COM14: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 14:52:47,848 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:52:47,852 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:52:47,852 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:52:47,852 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:21,931 - DEBUG - COM14: TX: 616985c58c3fb3639b05853bfd52f65fc8e7c5321c29aab84462dbde0557c80ebe383762fe986c692510dd567b183fd7186c1af3d7287655d3edb7a714013a6cae93b1ba3bbcad826f553b91d3d892dd2f72076bfdd6e8794c4f43041a64c6d2079b
+2023-02-28 14:53:21,943 - DEBUG - COM14: RX: 03846900
+2023-02-28 14:53:21,943 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-02-28 14:53:21,943 - DEBUG - COM14: TX: 059f01000100
+2023-02-28 14:53:21,943 - INFO - COM14: Success
+2023-02-28 14:53:21,944 - DEBUG - COM14: RX: 03849f8e
+2023-02-28 14:53:21,944 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-02-28 14:53:21,944 - DEBUG - COM14: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 14:53:21,944 - ERROR - COM14: None: ERROR_REJECTED
+2023-02-28 14:53:21,948 - DEBUG - COM14: RX: 03849281
+2023-02-28 14:53:21,948 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-02-28 14:53:21,948 - DEBUG - COM14: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 14:53:21,948 - ERROR - COM14: SubnetAdd: ERROR_INTERNAL
+2023-02-28 14:53:21,953 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:21,953 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:21,953 - DEBUG - COM14: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 14:53:21,953 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:21,957 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:21,957 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:21,957 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:28,342 - DEBUG - COM14: TX: 61699ec3c0ce34fbd826ad9c1689eb0ed0b3dfe4986c7f55617405710c4ead2cc2ced633a23cba05ef394e94a707fdea1f604c1ac811f1059aac947da0e06ec842fe676a791b45b863b71f1afe1bc45513b2543452548e51c65d1d081c5337e0984e
+2023-02-28 14:53:28,354 - DEBUG - COM14: RX: 03846900
+2023-02-28 14:53:28,354 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-02-28 14:53:28,354 - DEBUG - COM14: TX: 059f01000100
+2023-02-28 14:53:28,354 - INFO - COM14: Success
+2023-02-28 14:53:28,356 - DEBUG - COM14: RX: 03849f8e
+2023-02-28 14:53:28,356 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-02-28 14:53:28,356 - DEBUG - COM14: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 14:53:28,356 - ERROR - COM14: None: ERROR_REJECTED
+2023-02-28 14:53:28,360 - DEBUG - COM14: RX: 03849281
+2023-02-28 14:53:28,360 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-02-28 14:53:28,360 - DEBUG - COM14: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 14:53:28,360 - ERROR - COM14: SubnetAdd: ERROR_INTERNAL
+2023-02-28 14:53:28,364 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:28,364 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:28,364 - DEBUG - COM14: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 14:53:28,364 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:28,368 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:28,368 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:28,368 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:30,865 - DEBUG - COM14: TX: 6169ef450957347476d2f87881edd83b83c2312db47b0900708187cf02f66bf51046434243986d7a4ce30150366ad5d365fd7e1b1f35152e471e548c36310e5a4195d684a14c89d3eb09e22aadc3d5407364169dd470f6bf30dfbe8dc71045bf1a79
+2023-02-28 14:53:30,875 - DEBUG - COM14: RX: 03846900
+2023-02-28 14:53:30,875 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-02-28 14:53:30,875 - DEBUG - COM14: TX: 059f01000100
+2023-02-28 14:53:30,875 - INFO - COM14: Success
+2023-02-28 14:53:30,877 - DEBUG - COM14: RX: 03849f8e
+2023-02-28 14:53:30,877 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-02-28 14:53:30,877 - DEBUG - COM14: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 14:53:30,877 - ERROR - COM14: None: ERROR_REJECTED
+2023-02-28 14:53:30,880 - DEBUG - COM14: RX: 03849281
+2023-02-28 14:53:30,880 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-02-28 14:53:30,880 - DEBUG - COM14: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 14:53:30,880 - ERROR - COM14: SubnetAdd: ERROR_INTERNAL
+2023-02-28 14:53:30,884 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:30,884 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:30,884 - DEBUG - COM14: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 14:53:30,884 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:30,888 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:30,888 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:30,888 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:34,028 - DEBUG - COM14: TX: 61696e1069ae8567ae97f8efaf32a74190f05020fe08d03dde52ca95ad6d56711d73f7a4ccf092e058795c1e4db06ffa4de5a7132c248b8bd59cbe3cf56f4d3fcf834216a9f094d9b638b54189017fd4aaa3a8c05538f55820ca22f5ab67f793e430
+2023-02-28 14:53:34,038 - DEBUG - COM14: RX: 03846900
+2023-02-28 14:53:34,038 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 105, 'status': 0, 'data': ''}}
+2023-02-28 14:53:34,038 - DEBUG - COM14: TX: 059f01000100
+2023-02-28 14:53:34,038 - INFO - COM14: Success
+2023-02-28 14:53:34,040 - DEBUG - COM14: RX: 03849f8e
+2023-02-28 14:53:34,040 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 159, 'status': 142, 'data': ''}}
+2023-02-28 14:53:34,040 - DEBUG - COM14: TX: 1392000018eed9c2a56add85049ffc3c59ad0e12
+2023-02-28 14:53:34,040 - ERROR - COM14: None: ERROR_REJECTED
+2023-02-28 14:53:34,043 - DEBUG - COM14: RX: 03849281
+2023-02-28 14:53:34,043 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 146, 'status': 129, 'data': ''}}
+2023-02-28 14:53:34,044 - DEBUG - COM14: TX: 1597000000004f68ad85d9f48ac8589df665b6b49b8a
+2023-02-28 14:53:34,043 - ERROR - COM14: SubnetAdd: ERROR_INTERNAL
+2023-02-28 14:53:34,047 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:34,047 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:34,048 - DEBUG - COM14: TX: 1597010000002aa2a6ded5a0798ceab5787ca3ae39fc
+2023-02-28 14:53:34,047 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:53:34,051 - DEBUG - COM14: RX: 03849781
+2023-02-28 14:53:34,051 - DEBUG - COM14: parsed_packet {event: CmdRsp, data: {'opcode': 151, 'status': 129, 'data': ''}}
+2023-02-28 14:53:34,051 - ERROR - COM14: AppkeyAdd: ERROR_INTERNAL
+2023-02-28 14:54:34,767 - DEBUG - COM14: RX: 04810200fe
+2023-02-28 14:54:34,767 - DEBUG - COM14: parsed_packet {event: DeviceStarted, data: {'operating_mode': 2, 'hw_error': 0, 'data_credit_available': 254}}
+2023-02-28 14:54:34,767 - INFO - COM14: Device rebooted.
+2023-02-28 14:54:34,768 - DEBUG - COM14: RX: 08d900000000000000
+2023-02-28 14:54:34,768 - DEBUG - COM14: parsed_packet {event: MeshIvEntrySetNotification, data: {'iv_index': 0, 'iv_update_in_progress': 0, 'iv_update_timeout_counter': 0}}
+2023-02-28 14:54:34,768 - INFO - COM14: {event: MeshIvEntrySetNotification, data: {'iv_index': 0, 'iv_update_in_progress': 0, 'iv_update_timeout_counter': 0}}
+2023-02-28 14:54:34,773 - DEBUG - COM14: RX: 05da00200000
+2023-02-28 14:54:34,773 - DEBUG - COM14: parsed_packet {event: MeshSeqnumEntrySetNotification, data: {'next_block': 8192}}
+2023-02-28 14:54:34,773 - INFO - COM14: {event: MeshSeqnumEntrySetNotification, data: {'next_block': 8192}}
+2023-02-28 14:54:54,630 - DEBUG - COM14: exited read event
