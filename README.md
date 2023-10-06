@@ -147,10 +147,8 @@ The URL returned after executing above command shall be the public URL.
 ## Initial Configuration
 * Once the webserver is launched, navigate to the Add devices tab, enter the number of nodes to be provisioned.  
 * Then Click on the start provision button.  
-* Kindly wait till all the nodes are provisioned.   
-* Click Error 404 tab.  
-* <b> Please use <em>Error 404</em> page carefully. Once you have pre-configured the network clicking on this view shall load the Mesh_demo.json values into our MongoDb. If you click multiple times, it will duplicate the chip and group entries. So, please use this view carefully.</b>  
-* Then the user can schedule jobs through the provisioner.  
+* Kindly wait till all the nodes are provisioned.    
+* Then the user can schedule jobs through the Webserver.  
 * Some times the provisioner might take time to respond even after sending the command, in that case the system would reinstantiate the command and returns only after the command is successful.   
 
 <!-- DEMO -->
@@ -171,7 +169,6 @@ You can also find recorded videos showcasing various functionalities [here](http
 * We also assume that the user doesn't schedule a command in the past and would schedule a command to either run immediately or at some point in the future.
 * Sanity checks have been taken care of at as many places as possible but I couldn't cover every scenario and would have missed some. Please let me know if I missed any.
 * We assume that the user shall input Group and Chip IDs as per the Mesh network and not give values of nodes that are not present in the Mesh Network. 
-* <b> Please use <em>Error 404</em> page carefully. Once you have pre-configured the network clicking on this view shall load the Mesh_demo.json values into our MongoDb. If you click multiple times, it will duplicate the chip and group entries. So, please use this view carefully.</b>
 * Since our webserver checks for jobs (that need to be executed), every 30 seconds, while using periodic scheduling, please try to schedule the consecutive jobs some time apart. The webserver was able to run the commands as expected even if they are pretty close but we observed that the reliability of these commands being sent over network was low when scheduled immediately (maybe because of the serial connection used between Raspberry Pi and Provisioner).
 
 <p align="right">(<a href="#ble-mesh-project">back to top</a>)</p>

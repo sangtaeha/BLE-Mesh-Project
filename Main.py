@@ -333,26 +333,8 @@ def pages_login():
 
 @app.route('/pages_error_404', methods=['post','get'])
 def pages_error_404():
-    try:
-        f = open("./Mesh_demo.json")
-        data = json.load(f)
-        groups = {}
-        for chip in data:
-            db.chip_info.insert_one(chip)
-            if chip["Group_ID"] in groups:
-                grp = groups[chip["Group_ID"]]
-                grp["chip_info"].append(chip["Chip_ID"])
-                groups[chip["Group_ID"]] = grp
-            else:
-                grp = {"Group_ID":chip["Group_ID"], "Group_handle": chip["Group_ID_handle"], "chip_info":[chip["Chip_ID"]] }
-                groups[chip["Group_ID"]]=grp
-        
-        # insert groups dict to db
-        for (grp_id, grp_info) in groups.items():
-            db.group_info.insert_one(grp_info)
-        return render_template('pages-error-404.html')
-    except:
-        return render_template('error.html')  
+    return render_template('pages-error-404.html')
+ 
 
 @app.route('/pages_blank', methods=['post','get'])
 def pages_blank():
@@ -503,6 +485,21 @@ def bluetooth_devices():
             print("Provisioning is successful")
             db.chip_info.delete_many({})
             print("Chip info cleaned")
+            f = open("./Mesh_demo.json")
+            data = json.load(f)
+            groups = {}
+            for chip in data:
+                db.chip_info.insert_one(chip)
+                if chip["Group_ID"] in groups:
+                    grp = groups[chip["Group_ID"]]
+                    grp["chip_info"].append(chip["Chip_ID"])
+                    groups[chip["Group_ID"]] = grp
+                else:
+                    grp = {"Group_ID":chip["Group_ID"], "Group_handle": chip["Group_ID_handle"], "chip_info":[chip["Chip_ID"]] }
+                    groups[chip["Group_ID"]]=grp
+            # insert groups dict to db
+            for (grp_id, grp_info) in groups.items():
+                db.group_info.insert_one(grp_info)
             return redirect(url_for('pages_login'))
         except subprocess.CalledProcessError as e:
             return f"Provisioning failed: {e}"
